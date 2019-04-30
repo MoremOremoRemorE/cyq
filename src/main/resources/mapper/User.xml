@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyq.cyq.mapper.UserMapper">
+    <select id="getUser" resultType="com.cyq.cyq.model.User">
+        SELECT a.*,b.rolename FROM login a ,role b WHERE a.roleid=b.roleid;
+    </select>
+    <delete id="deleteUser" parameterType="Integer">
+        delete from login where id =#{id}
+    </delete>
+    <insert id="addUser" parameterType="com.cyq.cyq.model.User">
+        insert into login(username,password,sex,time,roleid)values(#{username},#{password},#{sex},#{time},#{roleid})
+    </insert>
+   <!-- <insert id="addUserRole" parameterType="com.cyq.cyq.model.UserRole">
+        insert into userrole(userid,roleid)values(#{userid},#{roleid})
+    </insert>-->
+    <select id="getUserByName" resultType="com.cyq.cyq.model.User">
+        select * from login where username=#{username}
+    </select>
+    <select id="getUserById" resultType="com.cyq.cyq.model.User">
+        select * from login where userid=#{userid}
+    </select>
+    <select id="regiterByName" parameterType="java.lang.String"  resultType="int">
+        select count(*) from login where username=#{username}
+    </select>
+    <select id="getuserCount" parameterType="java.lang.String" resultType="int">
+        select count(*) from login
+    </select>
+    <select id="selectUserId" parameterType="java.lang.String" resultType="String">
+        select MAX(userid) from login
+    </select>
+    <select id="getUserByName1" resultType="com.cyq.cyq.model.User">
+        select * from login where username=#{username}
+    </select>
+    <!--<update id="editUserById" parameterType="com.qun.qun.model.User">
+        update login
+            set
+            username=#{username},
+            password=#{password},
+            sex=#{sex},
+            time=#{time}
+        where id=#{id}
+    </update>-->
+    <update id="editUserByRole" parameterType="com.cyq.cyq.model.User">
+        update login
+        <set>
+            <if test="roleid != null">roleid=#{roleid}</if>
+        </set>
+        where userid=#{userid}
+    </update>
+</mapper>
