@@ -25,7 +25,7 @@
 <body>
 <div class='login'>
     <div class='login_title'>
-        <span>用户登录</span>
+        <span>用户注册</span>
     </div>
     <div class='login_fields'>
         <div class='login_fields__user'>
@@ -48,6 +48,16 @@
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
+                <img alt="" src='../../../static/login/img/lock_icon_copy.png'>
+            </div>
+            <input name="pwd" placeholder='确认密码' maxlength="16" type='text' autocomplete="off" id="cpassword">
+            <div class='validation'>
+                <img alt="" src='../../../static/login/img/tick.png'>
+            </div>
+        </div>
+
+       <div class='login_fields__password'>
+            <div class='icon'>
                 <img alt="" src='../../../static/login/img/key.png'>
             </div>
             <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off" id="code">
@@ -56,7 +66,6 @@
             </div>
         </div>
         <div class='login_fields__submit'>
-            <input type='button' value='登录' id="login">
             <input type='button' value='注册' id="register">
         </div>
     </div>
@@ -145,100 +154,45 @@
     var open = 0;
     layui.use('layer', function () {
         //非空验证
-        $("#login").click(function () {
+        $("#register").click(function () {
             var login = $('input[name="login"]').val();
             var pwd = $('input[name="pwd"]').val();
             var code = $('input[name="code"]').val();
+            var cpws = $("#cpassword").val();
             if (login == '') {
                 layer.msg('请输入您的账号');
             } else if (pwd == '') {
                 layer.msg('请输入密码');
             } else if (code == '' || code.length != 4) {
                 layer.msg('输入验证码');
-            } else {
-
+            } else if(pwd!=cpws){
+                layer.msg('两次输入的密码不一致');
+            } else{
                 var userinfo={};
                 userinfo.username=$("#username").val();
                 userinfo.code=code;
                 userinfo.password=$("#password").val();
-                //          var url="http://localhost:8080/front/logincheck";
-                var url='${cp}/front/logincheck';
+                userinfo.sex="男";   //默认为男，进去以后修改信息
+                var url='${cp}/front/addregister';
                 $.ajax({
                     url: url,
                     type: "POST",
                     data:  userinfo,
                     dataType: "json",
-                    //     async:false,
+                    async:false,
                     success:function(data){
-                        if(data.result =='success'){
-                            $('.login').addClass('test'); //倾斜特效
-                            setTimeout(function () {
-                                $('.login').addClass('testtwo'); //平移特效
-                            }, 300);
-                            setTimeout(function () {
-                                $('.authent').show().animate({ right: -320 }, {
-                                    easing: 'easeOutQuint',
-                                    duration: 600,
-                                    queue: false
-                                });
-                                $('.authent').animate({ opacity: 1 }, {
-                                    duration: 200,
-                                    queue: false
-                                }).addClass('visible');
-                            }, 500);
-                            setTimeout(function () {
-                                $('.authent').show().animate({ right: 90 }, {
-                                    easing: 'easeOutQuint',
-                                    duration: 600,
-                                    queue: false
-                                });
-                                $('.authent').animate({ opacity: 0 }, {
-                                    duration: 200,
-                                    queue: false
-                                }).addClass('visible');
-                                $('.login').removeClass('testtwo'); //平移特效
-                            }, 2000);
-                            setTimeout(function () {
-                                $('.authent').hide();
-                                $('.login').removeClass('test');
-                                if (data.result == 'success') {
-                                    //登录成功
-                                    $('.login div').fadeOut(100);
-                                    $('.success').fadeIn(1000);
-                                    $('.success').html('欢迎'+userinfo.username);
-                                    window.location.href="index";
-                                } else {
-                                    AjaxErro(data);
-                                }
-                            }, 2400);
-
-                        }else if(data.result =='pserr'){
-                            setTimeout(layer.msg('密码错误，请重新输入密码'),3000);
-                            //     alert('密码错误，请重新输入密码');
+                        if(data.msg =='success'){
+                            alert('注册成功');
+                            window.location.href="login";
                         }else{
-                            setTimeout(layer.msg('该用户尚未注册，请先注册'),function (){
-                                window.location.href="register";
-                            },3000);
-                            $("#username").val("");
-                            $("#password").val("");
-                            $("#code").val("");
-                            //     alert('该用户尚未注册，请先注册');
-
+                            layer.msg('该用户名已经被注册');
                         }
                     },
                     error:function(er){
-                        alert("错误");
+                        layer.msg("注册错误");
                     }
                 });
-            }
-        })
-        $("#register").click(function () {
-            var reusername = $("#username").val();
 
-            if(reusername!=""){
-                layer.msg("已经输入用户名了,请输入密码");
-            }else{
-                window.location.href="register";
             }
         })
 

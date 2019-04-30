@@ -8,10 +8,13 @@ public class User {
     private String username;
     private String sex;
     private String password;
+    private String newpassword;
     private String time;
     private String roleid;
     private String rolename;
     private String code;
+    private String phone;
+    private String note;
 
 
     public String getUserid() {
@@ -76,5 +79,29 @@ public class User {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword;
     }
 }

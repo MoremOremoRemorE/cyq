@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    %>
+    <c:set var="cp" value="<%=basePath%>" />
     <meta charset="utf-8">
     <title>设置我的密码</title>
     <meta name="renderer" content="webkit">
@@ -12,7 +17,7 @@
     <link rel="stylesheet" href="../../../static/layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-
+<form class="layui-form" action="">
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
@@ -42,7 +47,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="setmypass">确认修改</button>
+                                <button class="layui-btn" lay-submit lay-filter="password">确认修改</button>
                             </div>
                         </div>
                     </div>
@@ -52,14 +57,36 @@
         </div>
     </div>
 </div>
-
+</form>
+<script type="text/javascript" src="../../../static/jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
-        base: '../../../layuiadmin/' //静态资源所在路径
+        base: '../../../static/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'set']);
+
+    layui.use(['form'], function(){
+        var form = layui.form
+            ,layer = layui.layer;
+        //监听提交
+        form.on('submit(password)', function(data){
+            var userinfo={};
+            userinfo.password=data.field.oldPassword;
+            userinfo.newpassword=data.field.repassword;
+            var url='${cp}/user/editpassword';
+            $.post(url,userinfo,function(data){
+                if(data.msg=="successs"){
+                    layer.alert("修改成功");
+                }else{
+                    layer.alert("请输入正确的用户密码");
+                }
+            });
+            return false;
+        });
+    });
+
 </script>
 </body>
 </html>

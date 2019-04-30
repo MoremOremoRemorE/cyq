@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,4 +100,46 @@ public class LoginController {
         return mav;
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register(){
+        ModelAndView mav= new ModelAndView("login/register");
+        return mav;
+    }
+    @RequestMapping(value = "/addregister", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> addregister(User user) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        String username =user.getUsername();
+        //    String id= UUID.randomUUID().toString().replace("-", "").toLowerCase();
+        try {
+            int count = userService.regiterByName(username);
+            if(count > 0){
+                map.put("msg","fail");
+            }else{
+                //           user.setId(id);
+                //我要获取当前的日期
+                Date date = new Date();
+                //设置要获取到什么样的时间
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                //获取String类型的时间
+                String time = sdf.format(date);
+                user.setTime(time);
+                user.setRoleid("2");//默认为普通员工
+                userService.addUser(user);
+               /* String userid = userService.selectUserId();
+                UserRole userrole = new UserRole();
+                userrole.setRoleid(user.getRoleid());
+                userrole.setUserid(userid);
+
+                userService.addUserRole(userrole);*/
+                map.put("msg","success");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //    System.out.println(username);
+        //   System.out.println(password);
+        //   System.out.println(map);
+        return map;
+    }
 }
