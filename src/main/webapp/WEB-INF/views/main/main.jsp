@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div class="layui-fluid">
+<%--<div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md8">
             <div class="layui-row layui-col-space15">
@@ -313,7 +313,8 @@
         </div>
 
     </div>
-</div>
+</div>--%>
+<img src="../../../static/login/img/timg.jpg"/>
 
 <script src="../../../static/layuiadmin/layui/layui.js?t=1"></script>
 <script>

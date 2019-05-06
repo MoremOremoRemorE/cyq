@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,5 +113,21 @@ public class UserController {
             e.printStackTrace();
         }
         return map;
+    }
+    @RequestMapping(value = "/alluser", method = RequestMethod.GET)
+    public ModelAndView alluser(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("user/alluser");
+        return mav;
+    }
+
+    @RequestMapping(value = "/getalluser",method =RequestMethod.GET)
+    public List<User> getAllUser (HttpServletRequest request,HttpServletResponse response){
+        List <User> userlist = new ArrayList<User>();
+        try {
+            userlist = userService.getUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userlist;
     }
 }

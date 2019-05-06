@@ -57,6 +57,9 @@
         </div>
         <div class='login_fields__submit'>
             <input type='button' value='登录' id="login">
+           <%-- <input type='button' value='注册' id="register">--%>
+        </div>
+        <div class='login_fields__submit'>
             <input type='button' value='注册' id="register">
         </div>
     </div>

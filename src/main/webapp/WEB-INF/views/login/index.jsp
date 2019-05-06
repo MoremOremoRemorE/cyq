@@ -29,14 +29,14 @@
                         <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
                     </a>
                 </li>
-                <li class="layui-nav-item" lay-unselect>
+               <%-- <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;" layadmin-event="refresh" title="刷新">
                         <i class="layui-icon layui-icon-refresh-3"></i>
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
                     <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords=">
-                </li>
+                </li>--%>
             </ul>
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
@@ -69,8 +69,8 @@
         <!-- 侧边菜单 -->
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
-                <div class="layui-logo" lay-href="home/console.html">
-                    <span>layuiAdmin</span>
+                <div class="layui-logo" lay-href="${cp}/front/main">
+                    <span>系统菜单</span>
                 </div>
 
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
@@ -81,37 +81,37 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
-                                <a lay-href="home/console.html">控制台</a>
+                                <a lay-href="${cp}/front/main">欢迎页面</a>
                             </dd>
-                            <dd data-name="console">
+                           <%-- <dd data-name="console">
                                 <a lay-href="home/homepage1.html">主页一</a>
                             </dd>
                             <dd data-name="console">
                                 <a lay-href="home/homepage2.html">主页二</a>
-                            </dd>
+                            </dd>--%>
                         </dl>
                     </li>
                     <li data-name="component" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="组件" lay-direction="2">
+                        <a href="javascript:;" lay-tips="人员管理" lay-direction="2">
                             <i class="layui-icon layui-icon-component"></i>
-                            <cite>组件</cite>
+                            <cite>人员管理</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="grid">
-                                <a href="javascript:;">栅格</a>
+                                <a href="javascript:;">人员设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd data-name="list"><a lay-href="component/grid/list.html">等比例列表排列</a></dd>
-                                    <dd data-name="mobile"><a lay-href="component/grid/mobile.html">按移动端排列</a></dd>
+                                    <dd data-name="list"><a lay-href="component/grid/list.html">普通用户列表</a></dd>
+                                   <%-- <dd data-name="mobile"><a lay-href="component/grid/mobile.html">按移动端排列</a></dd>
                                     <dd data-name="mobile-pc"><a lay-href="component/grid/mobile-pc.html">移动桌面端组合</a></dd>
                                     <dd data-name="all"><a lay-href="component/grid/all.html">全端复杂组合</a></dd>
                                     <dd data-name="stack"><a lay-href="component/grid/stack.html">低于桌面堆叠排列</a></dd>
-                                    <dd data-name="speed-dial"><a lay-href="component/grid/speed-dial.html">九宫格</a></dd>
+                                    <dd data-name="speed-dial"><a lay-href="component/grid/speed-dial.html">九宫格</a></dd>--%>
                                 </dl>
                             </dd>
                             <dd data-name="button">
-                                <a lay-href="component/button/index.html">按钮</a>
+                                <a lay-href="${cp}/user/alluser">查看所有人员</a>
                             </dd>
-                            <dd data-name="form">
+                            <%--<dd data-name="form">
                                 <a href="javascript:;">表单</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="component/form/element.html">表单元素</a></dd>
@@ -268,17 +268,17 @@
                             </dd>
                             <dd data-name="code">
                                 <a lay-href="component/code/index.html">代码修饰</a>
-                            </dd>
+                            </dd>--%>
                         </dl>
                     </li>
                     <li data-name="template" class="layui-nav-item">
-                        <a href="javascript:;" lay-tips="页面" lay-direction="2">
+                        <a href="javascript:;" lay-tips="商品管理" lay-direction="2">
                             <i class="layui-icon layui-icon-template"></i>
-                            <cite>页面</cite>
+                            <cite>商品管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="template/personalpage.html">个人主页</a></dd>
-                            <dd><a lay-href="template/addresslist.html">通讯录</a></dd>
+                            <dd><a lay-href="template/personalpage.html">商品列表</a></dd>
+                            <%--<dd><a lay-href="template/addresslist.html">通讯录</a></dd>
                             <dd><a lay-href="template/goodslist.html">商品列表</a></dd>
                             <dd><a lay-href="template/msgboard.html">留言板</a></dd>
                             <dd><a lay-href="template/search.html">搜索结果</a></dd>
@@ -289,10 +289,10 @@
                             <dd><a lay-href="template/tips/error.html">错误提示</a></dd>
                             <dd><a lay-href="http://www.baidu.com/">百度一下</a></dd>
                             <dd><a lay-href="http://www.layui.com/">layui官网</a></dd>
-                            <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>
+                            <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>--%>
                         </dl>
                     </li>
-                    <li data-name="app" class="layui-nav-item">
+                    <%--<li data-name="app" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="应用" lay-direction="2">
                             <i class="layui-icon layui-icon-app"></i>
                             <cite>应用</cite>
@@ -357,35 +357,35 @@
                                 <a lay-href="user/administrators/role.html">角色管理</a>
                             </dd>
                         </dl>
-                    </li>
+                    </li>--%>
                     <li data-name="set" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="设置" lay-direction="2">
                             <i class="layui-icon layui-icon-set"></i>
                             <cite>设置</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd class="layui-nav-itemed">
+                            <%--<dd class="layui-nav-itemed">
                                 <a href="javascript:;">系统设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="set/system/website.html">网站设置</a></dd>
                                     <dd><a lay-href="set/system/email.html">邮件服务</a></dd>
                                 </dl>
-                            </dd>
+                            </dd>--%>
                             <dd class="layui-nav-itemed">
                                 <a href="javascript:;">我的设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd><a lay-href="set/user/info.html">基本资料</a></dd>
-                                    <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+                                    <dd><a lay-href="${cp}/user/userinfo">基本资料</a></dd>
+                                    <dd><a lay-href="${cp}/user/password">修改密码</a></dd>
                                 </dl>
                             </dd>
                         </dl>
                     </li>
-                    <li data-name="get" class="layui-nav-item">
+                    <%--<li data-name="get" class="layui-nav-item">
                         <a href="javascript:;" lay-href="http://www.layui.com/admin/#get" lay-tips="授权" lay-direction="2">
                             <i class="layui-icon layui-icon-auz"></i>
                             <cite>授权</cite>
                         </a>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
         </div>
@@ -417,7 +417,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe src="../front/console" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="../front/main" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
@@ -431,7 +431,7 @@
     layui.config({
         base: '../../../static/layuiadmin/' //静态资源所在路径
     }).extend({
-        index: '../../../static/layuiadmin/lib/index' //主入口模块
+        index: 'lib/index' //主入口模块
     }).use('index');
     function LogoutF()
     {

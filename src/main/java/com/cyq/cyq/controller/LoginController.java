@@ -142,4 +142,10 @@ public class LoginController {
         //   System.out.println(map);
         return map;
     }
+
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    public ModelAndView main(){
+        ModelAndView mav= new ModelAndView("main/main");
+        return mav;
+    }
 }
