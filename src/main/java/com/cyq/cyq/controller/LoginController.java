@@ -3,6 +3,8 @@ package com.cyq.cyq.controller;
 import com.alibaba.fastjson.JSON;
 import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.UserService;
+
+import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,30 +42,33 @@ public class LoginController {
 
     @RequestMapping(value = "/logincheck",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> checklogin1(HttpServletRequest req, HttpServletResponse resp,User user) {
-
+    public AskResult checklogin1(HttpServletRequest req, HttpServletResponse resp, User user) {
+        //清除上一个用户的遗留session
+        HttpSession fsession = req.getSession(false);
+        if(null !=fsession&&!fsession.isNew()){
+            fsession.invalidate();
+        }
         Map<String,Object> map = new HashMap<String,Object>();
         String username =user.getUsername();
         String password =user.getPassword();
         try {
-            User userinfo= new User();
-            userinfo = userService.getUserByName(username);
+            HttpSession session = req.getSession(true);
+            User userinfo = userService.getUserByName(username);
             String roleid = userinfo.getRoleid();
             if(userinfo == null ){
-                map.put("result","false");
+                return AskResult.success("false");
             }else if(!userinfo.getPassword().equals( password)){
-                map.put("result","pserr");
+                return AskResult.success("pserr");
             }else{
-                map.put("result","success");
+                session.setMaxInactiveInterval(60*60*5);
+                session.setAttribute("username",username);
+                session.setAttribute("roleid",roleid);
+                return AskResult.success("success");
             }
-            HttpSession session = req.getSession();
-            session.setAttribute("username",username);
-            session.setAttribute("roleid",roleid);
         } catch (Exception e) {
             e.printStackTrace();
+            return AskResult.failed("用户验证异常,请联系维护人员!");
         }
-        //      System.out.println(map);
-        return map;
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
