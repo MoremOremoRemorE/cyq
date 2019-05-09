@@ -173,29 +173,30 @@
                     dataType: "json",
                     //     async:false,
                     success:function(data){
-                        if(data.result =='success'){
+                        if(data.code=='200'){
+                        if(data.data =='success') {
                             $('.login').addClass('test'); //倾斜特效
                             setTimeout(function () {
                                 $('.login').addClass('testtwo'); //平移特效
                             }, 300);
                             setTimeout(function () {
-                                $('.authent').show().animate({ right: -320 }, {
+                                $('.authent').show().animate({right: -320}, {
                                     easing: 'easeOutQuint',
                                     duration: 600,
                                     queue: false
                                 });
-                                $('.authent').animate({ opacity: 1 }, {
+                                $('.authent').animate({opacity: 1}, {
                                     duration: 200,
                                     queue: false
                                 }).addClass('visible');
                             }, 500);
                             setTimeout(function () {
-                                $('.authent').show().animate({ right: 90 }, {
+                                $('.authent').show().animate({right: 90}, {
                                     easing: 'easeOutQuint',
                                     duration: 600,
                                     queue: false
                                 });
-                                $('.authent').animate({ opacity: 0 }, {
+                                $('.authent').animate({opacity: 0}, {
                                     duration: 200,
                                     queue: false
                                 }).addClass('visible');
@@ -204,18 +205,17 @@
                             setTimeout(function () {
                                 $('.authent').hide();
                                 $('.login').removeClass('test');
-                                if (data.result == 'success') {
+                                if (data.data == 'success') {
                                     //登录成功
                                     $('.login div').fadeOut(100);
                                     $('.success').fadeIn(1000);
-                                    $('.success').html('欢迎'+userinfo.username);
-                                    window.location.href="index";
+                                    $('.success').html('欢迎' + userinfo.username);
+                                    window.location.href = "index";
                                 } else {
                                     AjaxErro(data);
                                 }
                             }, 2400);
-
-                        }else if(data.result =='pserr'){
+                        }else if(data.data =='pserr'){
                             setTimeout(layer.msg('密码错误，请重新输入密码'),3000);
                             //     alert('密码错误，请重新输入密码');
                         }else{
@@ -226,11 +226,12 @@
                             $("#password").val("");
                             $("#code").val("");
                             //     alert('该用户尚未注册，请先注册');
-
+                        }}else {
+                            alert(data.msg);
                         }
                     },
                     error:function(er){
-                        alert("错误");
+                        alert("用户验证异常,请联系维护人员!");
                     }
                 });
             }
