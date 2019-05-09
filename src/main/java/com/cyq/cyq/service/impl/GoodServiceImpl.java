@@ -20,4 +20,9 @@ public class GoodServiceImpl implements GoodService {
         return goodMapper.getGoodSortList();
     }
 
+    @Override
+    public void deleteGoodSort(String goodsortid) throws Exception {
+        goodMapper.deleteGoodSort(goodsortid);
+    }
+
 }

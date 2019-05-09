@@ -4,4 +4,7 @@
     <select id="getGoodSortList" resultType="com.cyq.cyq.model.GoodSort">
         SELECT * FROM goodsort;
     </select>
+    <delete id="deleteGoodSort" parameterType="String">
+        delete from goodsort where goodsortid =#{goodsortid}
+    </delete>
 </mapper>

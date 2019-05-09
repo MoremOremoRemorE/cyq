@@ -89,14 +89,42 @@
         table.on('tool(table1)', function (obj) {
             var data = obj.data;
             var layEvent = obj.event;
-
+           // layer.alert(JSON.stringify(obj.data));
             if (layEvent === 'del') {
-                layer.msg('删除' + data.id);
+
+                if(obj.data.isParent==true){
+                    layer.msg('只能删除末级节点');
+                }else{
+                    layer.msg('删除' + data.goodsortname);
+                    del(obj);
+                }
+
             } else if (layEvent === 'edit') {
-                layer.alert(JSON.stringify(data));
                 layer.msg('修改' + data.id);
             }
         });
+        function del(obj) {
+            layer.confirm("你确定删除数据吗？此操作不能撤销！", {icon: 3, title: '提示'},
+
+                $.ajax({
+                    url:'${cp}/good/deletgoodsort',
+                    type:'post',
+                    data:{'id':obj.data.id},//向服务端发送删除的id
+                    async: false,
+                    success:function(data){
+                        if(data.msg =='success'){
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                            layer.close(index);
+                            layer.msg("删除成功",{icon:1});
+                        }
+                        else{
+                            layer.msg("删除失败",{icon:5});
+                        }
+                    }
+                })
+            );
+        }
+
     });
 </script>
 </body>

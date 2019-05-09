@@ -12,4 +12,5 @@ public interface GoodMapper {
 
     public List<GoodSort> getGoodSortList() throws Exception;
 
+    public void deleteGoodSort(String goodsortid);
 }

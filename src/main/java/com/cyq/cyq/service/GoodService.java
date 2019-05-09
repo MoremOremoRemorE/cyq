@@ -8,4 +8,6 @@ import java.util.List;
 public interface GoodService {
 
     public List<GoodSort> getGoodSortList()throws Exception;
+
+    public void deleteGoodSort(String goodsortid) throws Exception;
 }

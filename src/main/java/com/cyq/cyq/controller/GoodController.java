@@ -53,5 +53,18 @@ public class GoodController {
         return resultmap;
     }
 
+    @RequestMapping(value = "/deletgoodsort",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> deletgood(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String goodsortid =request.getParameter("id");
+        try {
+            goodService.deleteGoodSort(goodsortid);
+            map.put("msg","success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 
 }
