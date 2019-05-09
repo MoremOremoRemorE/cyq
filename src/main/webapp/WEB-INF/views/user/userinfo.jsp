@@ -32,7 +32,7 @@
                                 <select name="roleid" lay-verify="">
                                     <option value="1" <c:if test="${roleid==1}">selected="selected"</c:if>>超级管理员</option>
                                     <option value="2" <c:if test="${roleid==2}">selected="selected"</c:if>>普通管理员</option>
-                          </select>
+                                </select>
                             </div>
                            <%-- <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>--%>
                         </div>

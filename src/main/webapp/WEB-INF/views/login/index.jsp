@@ -100,7 +100,7 @@
                             <dd data-name="grid">
                                 <a href="javascript:;">人员设置</a>
                                 <dl class="layui-nav-child">
-                                    <dd data-name="list"><a lay-href="component/grid/list.html">普通用户列表</a></dd>
+                                    <dd data-name="list"><a lay-href="${cp}/user/notadmin">普通用户列表</a></dd>
                                    <%-- <dd data-name="mobile"><a lay-href="component/grid/mobile.html">按移动端排列</a></dd>
                                     <dd data-name="mobile-pc"><a lay-href="component/grid/mobile-pc.html">移动桌面端组合</a></dd>
                                     <dd data-name="all"><a lay-href="component/grid/all.html">全端复杂组合</a></dd>
@@ -277,19 +277,19 @@
                             <cite>商品管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="template/personalpage.html">商品列表</a></dd>
-                            <%--<dd><a lay-href="template/addresslist.html">通讯录</a></dd>
-                            <dd><a lay-href="template/goodslist.html">商品列表</a></dd>
-                            <dd><a lay-href="template/msgboard.html">留言板</a></dd>
-                            <dd><a lay-href="template/search.html">搜索结果</a></dd>
-                            <dd><a href="user/reg.html" target="_blank">注册</a></dd>
-                            <dd><a href="user/login.html" target="_blank">登入</a></dd>
-                            <dd><a href="user/forget.html" target="_blank">忘记密码</a></dd>
-                            <dd><a lay-href="template/tips/404.html">404页面不存在</a></dd>
-                            <dd><a lay-href="template/tips/error.html">错误提示</a></dd>
-                            <dd><a lay-href="http://www.baidu.com/">百度一下</a></dd>
-                            <dd><a lay-href="http://www.layui.com/">layui官网</a></dd>
-                            <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>--%>
+                            <dd><a lay-href="${cp}/good/goodlist">商品列表</a></dd>
+                            <dd><a lay-href="${cp}/good/goodsort">商品分类设置</a></dd>
+                            <%-- <dd><a lay-href="template/goodslist.html">商品列表</a></dd>
+                             <dd><a lay-href="template/msgboard.html">留言板</a></dd>
+                             <dd><a lay-href="template/search.html">搜索结果</a></dd>
+                             <dd><a href="user/reg.html" target="_blank">注册</a></dd>
+                             <dd><a href="user/login.html" target="_blank">登入</a></dd>
+                             <dd><a href="user/forget.html" target="_blank">忘记密码</a></dd>
+                             <dd><a lay-href="template/tips/404.html">404页面不存在</a></dd>
+                             <dd><a lay-href="template/tips/error.html">错误提示</a></dd>
+                             <dd><a lay-href="http://www.baidu.com/">百度一下</a></dd>
+                             <dd><a lay-href="http://www.layui.com/">layui官网</a></dd>
+                             <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>--%>
                         </dl>
                     </li>
                     <%--<li data-name="app" class="layui-nav-item">
