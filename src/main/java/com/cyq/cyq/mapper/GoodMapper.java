@@ -13,4 +13,12 @@ public interface GoodMapper {
     public List<GoodSort> getGoodSortList() throws Exception;
 
     public void deleteGoodSort(String goodsortid);
+
+    public GoodSort getGoodSortByName(String goodsortname);
+
+    public void editGoodSort(GoodSort nwegoodSort);
+
+    public int checkName(@Param("goodsortname")String goodsortname);
+
+    public void addGoodSort(GoodSort newgoodSort);
 }

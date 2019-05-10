@@ -26,24 +26,31 @@
 
                     <div class="layui-form" lay-filter="">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户名</label>
+                            <label class="layui-form-label" style="width: 100px">上级商品分类名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" value="${username}" readonly class="layui-input">
+                                <input type="text" name="goodname" value="${goodsortname}" readonly class="layui-input">
+                                <input type="hidden" name="goodsortid" value="${goodsortid}"  class="layui-input" >
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">角色名称</label>
+                            <label class="layui-form-label" style="width: 100px">商品分类名</label>
                             <div class="layui-input-inline">
-                                <select name="roleid" lay-verify="">
-                                    <option value="1" <c:if test="${roleid==1}">selected="selected"</c:if>>超级管理员</option>
-                                    <option value="2" <c:if test="${roleid==2}">selected="selected"</c:if>>普通管理员</option>
+                                <input type="text" name="goodname1" value=""  class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 100px">状态</label>
+                            <div class="layui-input-inline">
+                                <select name="goodsortstatus" lay-verify="">
+                                    <option value="0" <c:if test="${goodsortstatus=='启用'}">selected="selected"</c:if>>启用</option>
+                                    <option value="1" <c:if test="${goodsortstatus=='停用'}">selected="selected"</c:if>>停用</option>
                                 </select>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="userinfo">确认修改</button>
-                               <%-- <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>--%>
+                                <button class="layui-btn" lay-submit lay-filter="userinfo">确认添加</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
                             </div>
                         </div>
                     </div>
@@ -68,15 +75,18 @@
             ,layer = layui.layer;
         //监听提交
         form.on('submit(userinfo)', function(data){
-           var userinfo={};
-           userinfo.roleid=data.field.roleid;
-           userinfo.username=data.field.username;
-           var url='${cp}/user/edituserinfo';
-           $.post(url,userinfo,function(data){
-                if(data.data=="success"){
+            var goodsortinfo={};
+            goodsortinfo.goodsortid=data.field.goodsortid;
+            goodsortinfo.goodsortname=data.field.goodname1;
+            goodsortinfo.goodsortstatus=data.field.goodsortstatus;
+           var url='${cp}/good/addgoodsortinfo';
+           $.post(url,goodsortinfo,function(data){
+                if(data.msg=="success"){
                     window.parent.location.reload();
                     var index=parent.layer.getFrameIndex(window.name);
                     parent.layer.close(index);
+                }else{
+                    layer.msg("该商品分类名称已存在，请重新填写。");
                 }
            });
             return false;

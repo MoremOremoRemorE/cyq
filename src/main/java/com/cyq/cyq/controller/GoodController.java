@@ -14,10 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping(value ="/good" )
@@ -45,6 +43,14 @@ public class GoodController {
         Map<String,Object> resultmap = new HashMap<String,Object>();
 
         List<GoodSort> goodsortlist = goodService.getGoodSortList();
+
+        for(GoodSort goodSort:goodsortlist) {
+            if(goodSort.getGoodsortstatus().equals("0")){
+                goodSort.setGoodsortstatus("启用");
+            }else{
+                goodSort.setGoodsortstatus("停用");
+            }
+        }
         resultmap.put("data",goodsortlist);
         resultmap.put("code","1000");
         resultmap.put("msg","ok");
@@ -67,4 +73,74 @@ public class GoodController {
         return map;
     }
 
+    @RequestMapping(value = "/addgoodsort",method = RequestMethod.GET)
+    public ModelAndView addgoodsort(HttpServletRequest request) {
+        String goodsortid=request.getParameter("goodsortid");
+        String goodsortname=request.getParameter("goodsortname");
+        ModelAndView mav = new ModelAndView("good/addgoodsort");
+        mav.addObject("goodsortid",goodsortid);
+        mav.addObject("goodsortname",goodsortname);
+        return mav;
+    }
+
+    @RequestMapping(value = "/editgoodsort",method = RequestMethod.GET)
+    public ModelAndView editgoodsort(HttpServletRequest request) {
+        String goodsortid=request.getParameter("goodsortid");
+        String goodsortname=request.getParameter("goodsortname");
+        String goodsortstatus=request.getParameter("goodsortstatus");
+
+        ModelAndView mav = new ModelAndView("good/editgoodsort");
+        mav.addObject("goodsortid",goodsortid);
+        mav.addObject("goodsortname",goodsortname);
+        mav.addObject("goodsortstatus",goodsortstatus);
+        return mav;
+    }
+
+    @RequestMapping(value = "/editgoodsortinfo",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> editgoodsortinfo(HttpServletRequest request, HttpServletResponse response, GoodSort goodSort){
+        Map<String,Object> map = new HashMap<String,Object>();
+        GoodSort nwegoodSort = new GoodSort();
+        try{
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String updatetime = sdf.format(date);
+            nwegoodSort.setUpdatetime(updatetime);
+            nwegoodSort.setGoodsortid(goodSort.getGoodsortid());
+            nwegoodSort.setGoodsortstatus(goodSort.getGoodsortstatus());
+            nwegoodSort.setGoodsortname(goodSort.getGoodsortname());
+            goodService.editGoodSort(nwegoodSort);
+            map.put("data","success");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/addgoodsortinfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> addgoodsort(GoodSort goodSort) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        String goodsortname =goodSort.getGoodsortname();
+        GoodSort newgoodSort = new GoodSort();
+        try {
+            int count = goodService.checkName(goodsortname);
+            if(count > 0){
+                map.put("msg","fail");
+            }else{
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String time = sdf.format(date);
+                newgoodSort.setCreattime(time);
+                newgoodSort.setGoodsortname(goodsortname);
+                newgoodSort.setGoodsortstatus(goodSort.getGoodsortstatus());
+                newgoodSort.setGoodsortpid(goodSort.getGoodsortid());
+                goodService.addGoodSort(newgoodSort);
+                map.put("msg","success");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

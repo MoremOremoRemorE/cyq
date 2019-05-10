@@ -25,6 +25,7 @@
 </div>
 <!-- 操作列 -->
 <script type="text/html" id="oper-col">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加</a>
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -40,7 +41,6 @@
         var table = layui.table;
         var layer = layui.layer;
         var treetable = layui.treetable;
-
         // 渲染表格
         var renderTable = function () {
             layer.load(2);
@@ -95,17 +95,21 @@
                 if(obj.data.isParent==true){
                     layer.msg('只能删除末级节点');
                 }else{
-                    layer.msg('删除' + data.goodsortname);
                     del(obj);
+                /*    layer.msg('删除' + data.goodsortname);*/
                 }
 
             } else if (layEvent === 'edit') {
-                layer.msg('修改' + data.id);
+                edit(obj.data);
+            }else if(layEvent === 'add'){
+                add(obj.data);
             }
         });
-        function del(obj) {
-            layer.confirm("你确定删除数据吗？此操作不能撤销！", {icon: 3, title: '提示'},
 
+        var flag = false;
+        function del(obj) {
+        layer.confirm("你确定删除数据吗？此操作不能撤销！", {icon: 3, title: '提示'},
+            function(index){      //确认后执行的操作
                 $.ajax({
                     url:'${cp}/good/deletgoodsort',
                     type:'post',
@@ -113,18 +117,50 @@
                     async: false,
                     success:function(data){
                         if(data.msg =='success'){
+                            flag=true;
                             obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                             layer.close(index);
                             layer.msg("删除成功",{icon:1});
+                            renderTable();
                         }
                         else{
                             layer.msg("删除失败",{icon:5});
                         }
                     }
                 })
-            );
+            },
+            function(index){      //取消后执行的操作
+                flag = false;
+            });
         }
 
+        function add(pObj) {
+            if(pObj.goodsortstatus=='停用'){
+                layer.alert("该商品分类已经停用，请联系管理员启用。");
+            }else{
+            layer.open({
+                type: 2,
+                area: ['500px', '350px'],
+                title: "修改权限",
+                fixed: false, //不固定
+                shade: 0.8,
+                shadeClose: true,
+                content:'${cp}/good/addgoodsort?goodsortid='+pObj.id+'&goodsortname='+pObj.goodsortname
+            });
+         }
+        }
+
+        function edit(pObj) {
+            layer.open({
+                type: 2,
+                area: ['500px', '270px'],
+                title: "修改权限",
+                fixed: false, //不固定
+                shade: 0.8,
+                shadeClose: true,
+                content:'${cp}/good/editgoodsort?goodsortid='+pObj.id+'&goodsortname='+pObj.goodsortname+'&goodsortstatus='+pObj.goodsortstatus
+            });
+        }
     });
 </script>
 </body>

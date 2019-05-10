@@ -25,4 +25,24 @@ public class GoodServiceImpl implements GoodService {
         goodMapper.deleteGoodSort(goodsortid);
     }
 
+    @Override
+    public GoodSort getGoodSortByName(String goodsortname) {
+        return goodMapper.getGoodSortByName(goodsortname);
+    }
+
+    @Override
+    public void editGoodSort(GoodSort nwegoodSort) {
+        goodMapper.editGoodSort(nwegoodSort);
+    }
+
+    @Override
+    public int checkName(String goodsortname) {
+        return goodMapper.checkName(goodsortname);
+    }
+
+    @Override
+    public void addGoodSort(GoodSort newgoodSort) {
+        goodMapper.addGoodSort(newgoodSort);
+    }
+
 }
