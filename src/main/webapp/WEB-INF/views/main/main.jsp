@@ -314,7 +314,7 @@
 
     </div>
 </div>--%>
-<img src="../../../static/login/img/timg.jpg"/>
+<img src="../../../static/login/img/timg.jpg" height="100%" width="100%"/>
 
 <script src="../../../static/layuiadmin/layui/layui.js?t=1"></script>
 <script>
