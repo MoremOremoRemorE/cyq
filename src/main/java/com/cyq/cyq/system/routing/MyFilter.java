@@ -16,7 +16,7 @@ public class MyFilter implements Filter {
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper((HttpServletResponse) servletResponse);
         System.out.println(JSON.toJSONString(hrequest.getRequestURI()));
         if (hrequest.getRequestURI().contains("/index")) {
-            if (hrequest.getSession(false).getAttribute("username")!=null) {
+            if (hrequest.getSession(false)!=null&&hrequest.getSession(false).getAttribute("username")!=null) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 wrapper.sendRedirect("/front/login");
