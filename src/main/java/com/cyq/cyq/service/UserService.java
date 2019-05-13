@@ -36,4 +36,6 @@ public interface UserService {
     public  void editUserByRole(User user)throws Exception;
 
     public  User getUserById(String id);
+
+    public List<User> getNormalUser() throws Exception;
 }

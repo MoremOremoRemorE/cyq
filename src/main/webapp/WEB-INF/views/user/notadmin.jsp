@@ -66,7 +66,7 @@
             ,$ = layui.jquery;
        var ins1= table.render({
             elem: '#test-table-toolbar'
-            ,url: '${cp}/user/getalluser'
+            ,url: '${cp}/user/getnormaluser'
             ,toolbar: '#test-table-toolbar-toolbarDemo'
             ,title: '用户数据表'
             ,cols: [[

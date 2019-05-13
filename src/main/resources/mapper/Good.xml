@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyq.cyq.mapper.GoodMapper">
+    <select id="getGoodSortList" resultType="com.cyq.cyq.model.GoodSort">
+        SELECT * FROM goodsort;
+    </select>
+    <delete id="deleteGoodSort" parameterType="String">
+        delete from goodsort where goodsortid =#{goodsortid}
+    </delete>
+    <select id="getGoodSortByName" resultType="com.cyq.cyq.model.GoodSort">
+        select * from goodsort where goodsortname=#{goodsortname}
+    </select>
+    <update id="editGoodSort" parameterType="com.cyq.cyq.model.GoodSort">
+        update goodsort
+        <trim prefix="set" suffixOverrides=",">
+            <if test="goodsortname!=null">goodsortname=#{goodsortname},</if>
+            <if test="goodsortstatus!=null">goodsortstatus=#{goodsortstatus},</if>
+            <if test="updatetime!=null">updatetime=#{updatetime},</if>
+        </trim>
+        where goodsortid=#{goodsortid}
+    </update>
+    <select id="checkName" parameterType="java.lang.String"  resultType="int">
+        select count(*) from goodsort where goodsortname=#{goodsortname}
+    </select>
+    <insert id="addGoodSort" parameterType="com.cyq.cyq.model.GoodSort">
+        insert into goodsort(goodsortname,goodsortstatus,goodsortpid,creattime)values(#{goodsortname},#{goodsortstatus},#{goodsortpid},#{creattime})
+    </insert>
+</mapper>

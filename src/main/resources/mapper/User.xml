@@ -4,8 +4,12 @@
     <select id="getUser" resultType="com.cyq.cyq.model.User">
         SELECT a.*,b.rolename FROM login a ,role b WHERE a.roleid=b.roleid;
     </select>
-    <delete id="deleteUser" parameterType="Integer">
-        delete from login where id =#{id}
+    <select id="getNormalUser" resultType="com.cyq.cyq.model.User">
+        SELECT a.*,b.rolename FROM login a ,role b WHERE a.roleid=b.roleid and a.roleid=2;
+    </select>
+
+    <delete id="deleteUser" parameterType="String">
+        delete from login where userid =#{id}
     </delete>
     <insert id="addUser" parameterType="com.cyq.cyq.model.User">
         insert into login(username,password,sex,time,roleid)values(#{username},#{password},#{sex},#{time},#{roleid})

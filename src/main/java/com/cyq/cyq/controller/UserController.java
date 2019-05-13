@@ -121,13 +121,64 @@ public class UserController {
     }
 
     @RequestMapping(value = "/getalluser",method =RequestMethod.GET)
-    public List<User> getAllUser (HttpServletRequest request,HttpServletResponse response){
+    @ResponseBody
+    public Map<String,Object> getAllUser (HttpServletRequest request,HttpServletResponse response){
+        Map<String,Object> resultmap = new HashMap<String,Object>();
         List <User> userlist = new ArrayList<User>();
         try {
             userlist = userService.getUser();
+            resultmap.put("data",userlist);
+            resultmap.put("code","1000");
+            resultmap.put("msg","");
+            resultmap.put("code","0");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return userlist;
+        return resultmap;
+    }
+    @RequestMapping(value = "/deleteuser",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> deleteuser(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String userid =request.getParameter("id");
+        try {
+            userService.deleteUser(userid);
+            map.put("msg","success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/editrole", method = RequestMethod.GET)
+    public ModelAndView edituserrolename(HttpServletRequest request) {
+        String userid=request.getParameter("userid");
+        String username=request.getParameter("username");
+        ModelAndView mav = new ModelAndView("user/editrole");
+        mav.addObject("userid",userid);
+        mav.addObject("username",username);
+        return mav;
+    }
+    @RequestMapping(value = "/notadmin", method = RequestMethod.GET)
+    public ModelAndView notadmin(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("user/notadmin");
+        return mav;
+    }
+
+    @RequestMapping(value = "/getnormaluser",method =RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getnormaluser (HttpServletRequest request,HttpServletResponse response){
+        Map<String,Object> resultmap = new HashMap<String,Object>();
+        List <User> userlist = new ArrayList<User>();
+        try {
+            userlist = userService.getNormalUser();
+            resultmap.put("data",userlist);
+            resultmap.put("code","1000");
+            resultmap.put("msg","");
+            resultmap.put("code","0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultmap;
     }
 }

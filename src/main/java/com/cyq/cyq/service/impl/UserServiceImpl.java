@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getUser() throws Exception {
         return userMapper.getUser();
     }
+    public List<User> getNormalUser() throws Exception {
+        return userMapper.getNormalUser();
+    }
     //根据id删除用户
     @Override
     public void deleteUser(String id) throws Exception {
