@@ -1,0 +1,38 @@
+var editGoodSort={
+    init:function () {
+        layui.config({
+            base: '../../../static/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'set']);
+
+        layui.use(['form'], function(){
+            var form = layui.form
+                ,layer = layui.layer;
+            //监听提交
+            form.on('submit(goodinfo)', function(data){
+                var goodsortinfo={};
+                goodsortinfo.goodsortid=data.field.goodsortid;
+                goodsortinfo.goodsortname=data.field.goodsortname;
+                goodsortinfo.goodsortstatus=data.field.goodsortstatus;
+                if (utils.isEmpty(goodsortinfo.goodsortname)) {
+                    layer.msg("请填写商品名!");
+                    return false;
+                }
+                var url= baseUrl+'/good/editgoodsortinfo';
+                $.post(url,goodsortinfo,function(data){
+                    if(data.data=="success"){
+                        window.parent.location.reload();
+                        var index=parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    }
+                });
+                return false;
+            });
+        });
+
+    }
+};
+$(document).ready(function () {
+    editGoodSort.init();
+})
