@@ -54,12 +54,12 @@ public class LoginController {
         try {
             HttpSession session = req.getSession(true);
             User userinfo = userService.getUserByName(username);
-            String roleid = userinfo.getRoleid();
             if(userinfo == null ){
                 return AskResult.success("false");
             }else if(!userinfo.getPassword().equals( password)){
                 return AskResult.success("pserr");
             }else{
+                String roleid = userinfo.getRoleid();
                 session.setMaxInactiveInterval(60*60*5);
                 session.setAttribute("username",username);
                 session.setAttribute("roleid",roleid);

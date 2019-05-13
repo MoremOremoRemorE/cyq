@@ -1,0 +1,16 @@
+var utils = {
+    isNotEmpty: function (obj) {
+        if (typeof obj == 'undefined' || obj == '' || obj == null || obj == 'undefined') {
+            return false;
+        } else {
+            return true;
+        }
+    },
+    isEmpty: function (obj) {
+        if (typeof obj == 'undefined' || obj == '' || obj == null || obj == 'undefined') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

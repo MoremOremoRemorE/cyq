@@ -20,6 +20,9 @@
         <button class="layui-btn" id="btn-fold">全部折叠</button>
         <button class="layui-btn" id="btn-refresh">刷新表格</button>
     </div>
+    <div class="layui-btn" style="margin-left: 60%">
+        <button class="layui-btn" id="btn-add">新增</button>
+    </div>
     <table id="table1" class="layui-table" lay-filter="table1"></table>
 
 </div>
@@ -31,6 +34,7 @@
 </script>
 
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
+<script src="../../../js/utils/utils"></script>
 <script>
     layui.config({
         base: '../../../static/layuiadmin/modules/'
@@ -72,6 +76,13 @@
         };
 
         renderTable();
+
+        $('#btn-add').click(function () {
+            add({
+                id: '-1',
+                goodsortname: '商品'
+            });
+        })
 
         $('#btn-expand').click(function () {
             treetable.expandAll('#table1');
@@ -135,7 +146,7 @@
         }
 
         function add(pObj) {
-            if(pObj.goodsortstatus=='停用'){
+            if(utils.isNotEmpty(pObj)&&pObj.goodsortstatus=='停用'){
                 layer.alert("该商品分类已经停用，请联系管理员启用。");
             }else{
             layer.open({
@@ -154,7 +165,7 @@
             layer.open({
                 type: 2,
                 area: ['500px', '270px'],
-                title: "修改权限",
+                title: "商品添加",
                 fixed: false, //不固定
                 shade: 0.8,
                 shadeClose: true,

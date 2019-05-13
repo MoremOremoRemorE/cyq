@@ -63,6 +63,7 @@
 </form>
 <script type="text/javascript" src="../../../static/jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
+<script src="../../../js/utils/utils"></script>
 <script>
     layui.config({
         base: '../../../static/layuiadmin/' //静态资源所在路径
@@ -79,6 +80,10 @@
             goodsortinfo.goodsortid=data.field.goodsortid;
             goodsortinfo.goodsortname=data.field.goodname1;
             goodsortinfo.goodsortstatus=data.field.goodsortstatus;
+            if(utils.isEmpty(goodsortinfo.goodsortname)){
+                layer.msg("请填写商品名!");
+                return false;
+            }
            var url='${cp}/good/addgoodsortinfo';
            $.post(url,goodsortinfo,function(data){
                 if(data.msg=="success"){
