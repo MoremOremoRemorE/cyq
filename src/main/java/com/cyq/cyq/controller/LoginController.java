@@ -3,7 +3,7 @@ package com.cyq.cyq.controller;
 import com.alibaba.fastjson.JSON;
 import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.UserService;
-
+import com.cyq.cyq.utils.SendMsg;
 import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +64,7 @@ public class LoginController {
                 session.setAttribute("username",username);
                 session.setAttribute("roleid",roleid);
                 return AskResult.success("success");
+
             }
         } catch (Exception e) {
             e.printStackTrace();
