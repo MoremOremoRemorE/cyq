@@ -52,10 +52,11 @@
                         <dd><a lay-href="${cp}/user/userinfo">基本资料</a></dd>
                         <dd><a lay-href="${cp}/user/password">修改密码</a></dd>
                         <hr>
-                        <dd style="text-align: center;"><a onclick="LogoutF()">退出</a></dd>
+                        <dd style="text-align: center;"><a onclick="DeleteF()">用户注销</a></dd>
                        <%-- <dd><a lay-href="${cp}/user/logout">退出</a></dd>--%>
                     </dl>
                 </li>
+                <button class="layui-btn" onclick="LogoutF()">退出系统</button>
 
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
                     <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
@@ -426,18 +427,42 @@
     </div>
 </div>
 
+<script type="text/javascript" src="../../../static/login/js/jquery-ui.min.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
 <script>
+    var username = '${username}';
+    var userid = '${userid}';
     layui.config({
         base: '../../../static/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use('index');
+    }).use(['index','jquery'], function(){
+            $ = layui.jquery;
+    });
     function LogoutF()
     {
         location.href = '../front/login';
-
     }
+    function DeleteF() {
+        layer.confirm('真的注销用户为：'+username+"的用户吗?", function(){
+            $.ajax({
+                url:'${cp}/user/deleteuseranyway',
+                type:'post',
+                data:{'userid':userid},
+                async: false,
+                success:function(data){
+                    if(data.msg =='success'){
+                        alert("删除成功",{icon:1});
+                        location.href = '../front/login';
+                    }
+                    else{
+                        layer.msg("删除失败",{icon:5});
+                    }
+                }
+            });
+        });
+    }
+
 </script>
 </body>
 </html>

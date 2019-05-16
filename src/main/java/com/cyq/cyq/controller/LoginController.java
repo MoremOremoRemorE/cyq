@@ -1,13 +1,11 @@
 package com.cyq.cyq.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.UserService;
-import com.cyq.cyq.utils.SendMsg;
+import com.cyq.cyq.service.SendEmailService;
 import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,8 +29,8 @@ public class LoginController {
     private MenuService menuService;*/
     @Autowired
     private User user;
-    /*@Autowired
-    private Menu menu;*/
+    @Autowired
+    private SendEmailService sendEmailService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request) {
@@ -60,11 +58,12 @@ public class LoginController {
                 return AskResult.success("pserr");
             }else{
                 String roleid = userinfo.getRoleid();
+                String userid = userinfo.getUserid();
                 session.setMaxInactiveInterval(60*60*5);
                 session.setAttribute("username",username);
                 session.setAttribute("roleid",roleid);
+                session.setAttribute("userid",userid);
                 return AskResult.success("success");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,17 +77,17 @@ public class LoginController {
    //     List<Menu> menuData = null;
         String username ="";
         String msg="";
+        String userid="";
         String roleid="";
         try {
             HttpSession session = request.getSession(false);
             username = (String)session.getAttribute("username");
+            userid = (String)session.getAttribute("userid");
             //得到roleid
             roleid = (String)session.getAttribute("roleid");
             //根据roleid得到不同的菜单
      //       menuData = menuService.getMenu(roleid);
             userinfolist = userService.getUser();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,6 +95,7 @@ public class LoginController {
         mav.addObject("msg",msg);
         mav.addObject("userinfolist", userinfolist);
         mav.addObject("username",username);
+        mav.addObject("userid",userid);
   //      mav.addObject("menuData",JSON.toJSONString(menuData));
         return mav;
     }
@@ -116,6 +116,8 @@ public class LoginController {
     public Map<String, Object> addregister(User user) {
         Map<String,Object> map = new HashMap<String,Object>();
         String username =user.getUsername();
+        String email = user.getEmail();
+        String keywoed="register";
         //    String id= UUID.randomUUID().toString().replace("-", "").toLowerCase();
         try {
             int count = userService.regiterByName(username);
@@ -138,6 +140,7 @@ public class LoginController {
                 userrole.setUserid(userid);
 
                 userService.addUserRole(userrole);*/
+                sendEmailService.sendEmail(username,email,keywoed);
                 map.put("msg","success");
             }
         } catch (Exception e) {

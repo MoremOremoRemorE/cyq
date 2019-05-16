@@ -8,7 +8,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 public class SendMsg {
 
-    public static void main(String[] args)throws Exception
+    public static void sendMsg()throws Exception
     {
 
         HttpClient client = new HttpClient();
@@ -16,8 +16,8 @@ public class SendMsg {
         post.addRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=gbk");//在头文件中设置转码
         NameValuePair[] data ={ new NameValuePair("Uid", "1334538961@qq.com"),
                 new NameValuePair("Key", "d41d8cd98f00b204e980"),
-                new NameValuePair("smsMob","18392003732"),
-                new NameValuePair("smsText","顺路帮验证码：8888")};
+                new NameValuePair("smsMob","15878126562,13558333806"),
+                new NameValuePair("smsText","顺路帮验证码：88889999")};
         post.setRequestBody(data);
 
         client.executeMethod(post);

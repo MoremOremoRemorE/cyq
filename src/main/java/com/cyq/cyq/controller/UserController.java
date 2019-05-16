@@ -1,6 +1,7 @@
 package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.User;
+import com.cyq.cyq.service.SendEmailService;
 import com.cyq.cyq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -25,6 +26,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private User user;
+    @Autowired
+    private SendEmailService sendEmailService;
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
     public ModelAndView userinfo(HttpServletRequest request) {
@@ -93,12 +96,14 @@ public class UserController {
         String userid="";
         String oldpassword="";
         String password="";
+        String email="";
         User newuser = new User();
         try{
             HttpSession session = request.getSession(false);
             username = (String)session.getAttribute("username");
             User userx= userService.getUserByName(username);
             oldpassword=userx.getPassword();
+            email = userx.getEmail();
             password=user.getPassword();
             if(!oldpassword.equals(password)){
                 map.put("msg","fail");
@@ -107,6 +112,7 @@ public class UserController {
                 newuser.setUserid(userid);
                 newuser.setPassword(user.getNewpassword());
                 userService.editUser(newuser);
+                sendEmailService.sendEmail(username,email,password);
                 map.put("msg", "successs");
             }
         }catch(Exception e){
@@ -180,5 +186,19 @@ public class UserController {
             e.printStackTrace();
         }
         return resultmap;
+    }
+
+    @RequestMapping(value = "/deleteuseranyway",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> deleteuseranyway(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String userid =request.getParameter("userid");
+        try {
+            userService.deleteUser(userid);
+            map.put("msg","success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 }
