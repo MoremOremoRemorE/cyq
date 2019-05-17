@@ -1,5 +1,6 @@
 package com.cyq.cyq.controller;
 
+import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
 import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.GoodService;
@@ -142,5 +143,28 @@ public class GoodController {
             e.printStackTrace();
         }
         return map;
+    }
+
+    @RequestMapping(value = "/getallgood",method =RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getAllgood (HttpServletRequest request,HttpServletResponse response){
+        Map<String,Object> resultmap = new HashMap<String,Object>();
+        List <Good> goodlist = new ArrayList<Good>();
+        try {
+            goodlist = goodService.getGood();
+            resultmap.put("data",goodlist);
+            resultmap.put("code","1000");
+            resultmap.put("msg","");
+            resultmap.put("code","0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultmap;
+    }
+
+    @RequestMapping(value = "/addgood",method = RequestMethod.GET)
+    public ModelAndView addgood(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("good/addgood");
+        return mav;
     }
 }

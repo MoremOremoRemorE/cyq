@@ -1,5 +1,6 @@
 package com.cyq.cyq.service;
 
+import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
 import com.cyq.cyq.model.User;
 
@@ -18,4 +19,6 @@ public interface GoodService {
     public int checkName(String goodsortname);
 
     public void addGoodSort(GoodSort newgoodSort);
+
+    public List<Good> getGood()throws Exception;
 }

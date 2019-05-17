@@ -1,5 +1,6 @@
 package com.cyq.cyq.mapper;
 
+import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
 import com.cyq.cyq.model.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,4 +22,6 @@ public interface GoodMapper {
     public int checkName(@Param("goodsortname")String goodsortname);
 
     public void addGoodSort(GoodSort newgoodSort);
+
+    public List<Good> getGood() throws Exception;
 }

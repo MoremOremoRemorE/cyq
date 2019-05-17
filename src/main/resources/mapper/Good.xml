@@ -25,4 +25,7 @@
     <insert id="addGoodSort" parameterType="com.cyq.cyq.model.GoodSort">
         insert into goodsort(goodsortname,goodsortstatus,goodsortpid,creattime)values(#{goodsortname},#{goodsortstatus},#{goodsortpid},#{creattime})
     </insert>
+    <select id="getGood" resultType="com.cyq.cyq.model.Good">
+        SELECT * FROM good
+    </select>
 </mapper>
