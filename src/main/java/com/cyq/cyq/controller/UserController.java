@@ -112,7 +112,7 @@ public class UserController {
                 newuser.setUserid(userid);
                 newuser.setPassword(user.getNewpassword());
                 userService.editUser(newuser);
-                sendEmailService.sendEmail(username,email,password);
+                sendEmailService.sendEmaileditpassword(username,email,password);
                 map.put("msg", "successs");
             }
         }catch(Exception e){

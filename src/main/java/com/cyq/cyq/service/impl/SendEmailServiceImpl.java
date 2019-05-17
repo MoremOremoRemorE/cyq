@@ -15,7 +15,7 @@ public class SendEmailServiceImpl implements SendEmailService {
     }
 
     @Override
-    public void senfEmaileditpassword(String username, String email, String password) throws GeneralSecurityException {
-        SendEmail.senfEmaileditpassword(username,email,password);
+    public void sendEmaileditpassword(String username, String email, String password) throws GeneralSecurityException {
+        SendEmail.sendEmaileditpassword(username,email,password);
     }
 }
