@@ -12,4 +12,6 @@ public interface GoodService {
     public void deleteGood(String goodid);
 
     public void editGood(Good good);
+
+    public Good selectGoodByName(String goodname);
 }

@@ -17,4 +17,6 @@ public interface GoodMapper {
     public void deleteGood(String goodid);
 
     public  void editGood(Good good);
+
+    public Good selectGoodByName(String goodname);
 }

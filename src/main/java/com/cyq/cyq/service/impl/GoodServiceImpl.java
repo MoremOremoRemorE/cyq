@@ -36,4 +36,9 @@ public class GoodServiceImpl implements GoodService {
     public void editGood(Good good) {
         goodMapper.editGood(good);
     }
+
+    @Override
+    public Good selectGoodByName(String goodname) {
+       return  goodMapper.selectGoodByName(goodname);
+    }
 }

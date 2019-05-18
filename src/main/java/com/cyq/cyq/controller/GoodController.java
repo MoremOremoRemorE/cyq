@@ -233,11 +233,18 @@ public class GoodController {
     public Map<String,Object> editgoodinfo(HttpServletRequest request, HttpServletResponse response, Good good){
         Map<String,Object> map = new HashMap<String,Object>();
         String goodname =good.getGoodname();
+        String goodid=good.getGoodid();
+        Good newgood= new Good();
         try{
-            int count = goodService.checkName(goodname);
+            newgood = goodService.selectGoodByName(goodname);
+            String newgoodid=newgood.getGoodid();
+            if(!goodid.equals(newgoodid)){
+                map.put("msg","fail");
+            }
+           /* int count = goodService.checkName(goodname);
             if(count > 0){
                 map.put("msg","fail");
-            }else {
+            }*/else {
                 goodService.editGood(good);
                 map.put("data", "success");
             }

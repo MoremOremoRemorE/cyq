@@ -23,4 +23,8 @@
         </trim>
         where goodid=#{goodid}
     </update>
+
+    <select id="selectGoodByName" resultType="com.cyq.cyq.model.Good">
+        select * from good where goodname=#{goodname}
+    </select>
 </mapper>
