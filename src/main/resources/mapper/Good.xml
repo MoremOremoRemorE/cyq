@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyq.cyq.mapper.GoodMapper">
-    <select id="getGoodSortList" resultType="com.cyq.cyq.model.GoodSort">
-        SELECT * FROM goodsort;
+    <select id="checkGoodName" parameterType="java.lang.String"  resultType="int">
+        select count(*) from good where goodname=#{goodname}
     </select>
-    <delete id="deleteGoodSort" parameterType="String">
-        delete from goodsort where goodsortid =#{goodsortid}
-    </delete>
-    <select id="getGoodSortByName" resultType="com.cyq.cyq.model.GoodSort">
-        select * from goodsort where goodsortname=#{goodsortname}
-    </select>
-    <update id="editGoodSort" parameterType="com.cyq.cyq.model.GoodSort">
-        update goodsort
-        <trim prefix="set" suffixOverrides=",">
-            <if test="goodsortname!=null">goodsortname=#{goodsortname},</if>
-            <if test="goodsortstatus!=null">goodsortstatus=#{goodsortstatus},</if>
-            <if test="updatetime!=null">updatetime=#{updatetime},</if>
-        </trim>
-        where goodsortid=#{goodsortid}
-    </update>
-    <select id="checkName" parameterType="java.lang.String"  resultType="int">
-        select count(*) from goodsort where goodsortname=#{goodsortname}
-    </select>
-    <insert id="addGoodSort" parameterType="com.cyq.cyq.model.GoodSort">
-        insert into goodsort(goodsortname,goodsortstatus,goodsortpid,creattime)values(#{goodsortname},#{goodsortstatus},#{goodsortpid},#{creattime})
+    <insert id="addGood" parameterType="com.cyq.cyq.model.Good">
+        insert into good(goodname,price,memprice,outtime,status,address,goodsortid)values(#{goodname},#{price},#{memprice},#{outtime},#{status},#{address},#{goodsortid})
     </insert>
-    <select id="getGood" resultType="com.cyq.cyq.model.Good">
-        SELECT * FROM good
-    </select>
+    <delete id="deleteGood" parameterType="String">
+        delete from good where goodid =#{goodid}
+    </delete>
+    <update id="editGood" parameterType="com.cyq.cyq.model.Good">
+        update good
+        <trim prefix="set" suffixOverrides=",">
+            <if test="goodname!=null">goodname=#{goodname},</if>
+            <if test="price!=null">price=#{price},</if>
+            <if test="memprice!=null">memprice=#{memprice},</if>
+            <if test="outtime!=null">outtime=#{outtime},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="goodsortid!=null">goodsortid=#{goodsortid},</if>
+        </trim>
+        where goodid=#{goodid}
+    </update>
 </mapper>

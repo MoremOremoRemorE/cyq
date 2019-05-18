@@ -29,19 +29,20 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">* 商品名称</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="goodname" value=""  class="layui-input" lay-verify="required">
+                                    <input type="hidden" name="goodid" value="${goodid}">
+                                    <input type="text" name="goodname" value=""  class="layui-input" lay-verify="required"  placeholder="${goodname}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">* 商品价格</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="price" value=""  class="layui-input" lay-verify="required|number">
+                                    <input type="text" name="price" value=""  class="layui-input" lay-verify="required|number" placeholder="${price}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">会员价</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="memprice" value=""  class="layui-input">
+                                    <input type="text" name="memprice" value=""  class="layui-input" placeholder="${memprice}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -57,14 +58,14 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">* 商品地址</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="address" value=""  class="layui-input" lay-verify="required">
+                                    <input type="text" name="address" value=""  class="layui-input" lay-verify="required" placeholder="${address}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">售出时间</label>
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <input type="text" name="outtime" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                        <input type="text" name="outtime" id="date" lay-verify="date" placeholder="${outtime}"  autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +101,7 @@
 
                             <div class="layui-form-item">
                                 <div class="layui-input-block">
-                                    <button class="layui-btn" lay-submit lay-filter="goodinfo">确认添加</button>
+                                    <button class="layui-btn" lay-submit lay-filter="goodinfo">确认修改</button>
                                     <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
                                 </div>
                             </div>
@@ -179,6 +180,7 @@
         //监听提交
         form.on('submit(goodinfo)', function(data){
             var goodinfo={};
+            goodinfo.goodid=data.field.goodid;
             goodinfo.goodname=data.field.goodname;
             goodinfo.price=data.field.price;
             goodinfo.memprice=data.field.memprice;
@@ -186,13 +188,13 @@
             goodinfo.status=data.field.status;
             goodinfo.outtime=data.field.outtime;
             goodinfo.goodsortid=32      //树形结构暂时没处理，先写死
-            var url='${cp}/good/addgoodinfo';
+            var url='${cp}/good/editgoodinfo';
             $.post(url,goodinfo,function(data){
-                if(data.msg=="success"){
-                    layer.msg("添加成功");
+                if(data.data=="success"){
+                    layer.msg("修改成功");
                     window.parent.location.reload();
-                }else{
-                    layer.msg("已有相同名称的商品");
+                }else {
+                    layer.msg("商品名称重复");
                 }
             });
             return false;

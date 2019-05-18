@@ -74,11 +74,9 @@
                 {type: 'checkbox', fixed: 'left'}
                 // ,{field:'goodid', title:'ID', width:100, fixed: 'left', unresize: true, sort: true}
                 ,{field:'goodname', title:'商品名', width:200}
-                ,{field:'price', title:'商品价格', width:200, templet: function(res){
-                        return '<em>'+ res.phone +'</em>'
-                    }}
+                ,{field:'price', title:'商品价格', width:200, sort: true}
                 ,{field:'memprice', title:'会员价', width:200, sort: true}
-                ,{field:'address', title:'商品地址', width:300, sort: true}
+                ,{field:'address', title:'商品地址', width:428, sort: true}
                 ,{field:'outtime', title:'售出时间', width:200, sort: true}
                 ,{field:'status', title:'商品状态', width:184, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:300}
@@ -112,14 +110,11 @@
             var tr = obj.tr; //获得当前行 tr 的DOM对象
 
             if(layEvent === 'del'){ //删除
-                layer.confirm('真的删除用户为：'+data.username+"的用户吗?", function(index){
-
-                    //console.log(data.p_id);
-                    //向服务端发送删除指令
+                layer.confirm('真的删除：'+data.goodname+"商品吗?", function(index){
                     $.ajax({
-                        url:'${cp}/user/deleteuser',
+                        url:'${cp}/good/deletegood',
                         type:'post',
-                        data:{'id':data.userid},//向服务端发送删除的id
+                        data:{'id':data.goodid},//向服务端发送删除的id
                         async: false,
                         success:function(data){
                             if(data.msg =='success'){
@@ -136,21 +131,16 @@
                 });
 
             } else if(layEvent === 'edit') { //编辑
-                if(data.roleid== 2){
                     layer.open({
                         type: 2,
-                        area: ['500px', '270px'],
-                        title: "修改权限",
+                        area: ['1500px', '800px'],
+                        title: "修改商品信息",
                         fixed: false, //不固定
                         shade: 0.8,
                         shadeClose: true,
-                        content:'${cp}/user/editrole?userid='+data.userid+'&username='+data.username
+                        content:'${cp}/good/editgood?goodid='+data.goodid+'&goodname='+data.goodname+'&price='+data.price+'&memprice='+data.memprice+'&address='+data.address+'&outtime='+data.outtime
                     });
-                }else{
-                    layer.alert('管理员只能修改普通用户的权限');
                 }
-
-            }
         });
 
     });

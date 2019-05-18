@@ -2,9 +2,8 @@ package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
-import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.GoodService;
-import com.cyq.cyq.service.UserService;
+import com.cyq.cyq.service.GoodSortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -22,9 +20,13 @@ import java.util.*;
 @RequestMapping(value ="/good" )
 public class GoodController {
     @Autowired
-    private GoodService goodService ;
+    private GoodSortService goodSortService;
     @Autowired
     private GoodSort goodSort ;
+    @Autowired
+    private GoodService goodService;
+    @Autowired
+    private Good good ;
 
     @RequestMapping(value = "/goodlist", method = RequestMethod.GET)
     public ModelAndView goodlist(HttpServletRequest request) {
@@ -43,7 +45,7 @@ public class GoodController {
     public Map<String,Object> getAllUser (HttpServletRequest request,HttpServletResponse response) throws Exception {
         Map<String,Object> resultmap = new HashMap<String,Object>();
 
-        List<GoodSort> goodsortlist = goodService.getGoodSortList();
+        List<GoodSort> goodsortlist = goodSortService.getGoodSortList();
 
         for(GoodSort goodSort:goodsortlist) {
             if(goodSort.getGoodsortstatus().equals("0")){
@@ -66,7 +68,7 @@ public class GoodController {
         Map<String, Object> map = new HashMap<String, Object>();
         String goodsortid =request.getParameter("id");
         try {
-            goodService.deleteGoodSort(goodsortid);
+            goodSortService.deleteGoodSort(goodsortid);
             map.put("msg","success");
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +112,7 @@ public class GoodController {
             nwegoodSort.setGoodsortid(goodSort.getGoodsortid());
             nwegoodSort.setGoodsortstatus(goodSort.getGoodsortstatus());
             nwegoodSort.setGoodsortname(goodSort.getGoodsortname());
-            goodService.editGoodSort(nwegoodSort);
+            goodSortService.editGoodSort(nwegoodSort);
             map.put("data","success");
         }catch(Exception e){
             e.printStackTrace();
@@ -125,7 +127,7 @@ public class GoodController {
         String goodsortname =goodSort.getGoodsortname();
         GoodSort newgoodSort = new GoodSort();
         try {
-            int count = goodService.checkName(goodsortname);
+            int count = goodSortService.checkName(goodsortname);
             if(count > 0){
                 map.put("msg","fail");
             }else{
@@ -136,7 +138,7 @@ public class GoodController {
                 newgoodSort.setGoodsortname(goodsortname);
                 newgoodSort.setGoodsortstatus(goodSort.getGoodsortstatus());
                 newgoodSort.setGoodsortpid(goodSort.getGoodsortid());
-                goodService.addGoodSort(newgoodSort);
+                goodSortService.addGoodSort(newgoodSort);
                 map.put("msg","success");
             }
         } catch (Exception e) {
@@ -151,7 +153,14 @@ public class GoodController {
         Map<String,Object> resultmap = new HashMap<String,Object>();
         List <Good> goodlist = new ArrayList<Good>();
         try {
-            goodlist = goodService.getGood();
+            goodlist = goodSortService.getGood();
+            for(Good good:goodlist) {
+                if(good.getStatus().equals("0")){
+                    good.setStatus("启用");
+                }else{
+                    good.setStatus("停用");
+                }
+            }
             resultmap.put("data",goodlist);
             resultmap.put("code","1000");
             resultmap.put("msg","");
@@ -167,4 +176,75 @@ public class GoodController {
         ModelAndView mav = new ModelAndView("good/addgood");
         return mav;
     }
+
+    @RequestMapping(value = "/addgoodinfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> addgoodinfo(Good good) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        String goodname =good.getGoodname();
+        try {
+            int count = goodService.checkName(goodname);
+            if(count > 0){
+                map.put("msg","fail");
+            }else{
+                goodService.addGood(good);
+                map.put("msg","success");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/deletegood",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> deletegood(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String goodid =request.getParameter("id");
+        try {
+            goodService.deleteGood(goodid);
+            map.put("msg","success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+    @RequestMapping(value = "/editgood",method = RequestMethod.GET)
+    public ModelAndView editgood(HttpServletRequest request) {
+        String goodid=request.getParameter("goodid");
+        String goodname=request.getParameter("goodname");
+        String address = request.getParameter("address");
+        String outtime= request.getParameter("outtime");
+        String price=request.getParameter("price");
+        String memprice=request.getParameter("memprice");
+        ModelAndView mav = new ModelAndView("good/editgood");
+        mav.addObject("goodid",goodid);
+        mav.addObject("goodname",goodname);
+        mav.addObject("address",address);
+        mav.addObject("price",price);
+        mav.addObject("outtime",outtime);
+        mav.addObject("memprice",memprice);
+
+
+        return mav;
+    }
+    @RequestMapping(value = "/editgoodinfo",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> editgoodinfo(HttpServletRequest request, HttpServletResponse response, Good good){
+        Map<String,Object> map = new HashMap<String,Object>();
+        String goodname =good.getGoodname();
+        try{
+            int count = goodService.checkName(goodname);
+            if(count > 0){
+                map.put("msg","fail");
+            }else {
+                goodService.editGood(good);
+                map.put("data", "success");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return map;
+    }
+
 }
