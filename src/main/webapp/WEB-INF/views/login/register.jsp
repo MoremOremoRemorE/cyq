@@ -40,6 +40,15 @@
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
+                <img alt="" src='../../../static/login/img/email.png'>
+            </div>
+            <input name="email" placeholder='邮箱' maxlength="18" type='text' autocomplete="off" id="email">
+            <div class='validation'>
+                <img alt="" src='../../../static/login/img/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__password'>
+            <div class='icon'>
                 <img alt="" src='../../../static/login/img/lock_icon_copy.png'>
             </div>
             <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off" id="password">
@@ -72,9 +81,9 @@
     </div>
     <div class='success'>
     </div>
-    <div class='disclaimer'>
+  <%--  <div class='disclaimer'>
         <p>这里本来是两个迎宾小姐姐的</p>
-    </div>
+    </div>--%>
 </div>
 <div class='authent'>
     <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
@@ -154,12 +163,14 @@
     });
     var open = 0;
     layui.use('layer', function () {
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式判断邮箱是否正确
         //非空验证
         $("#register").click(function () {
             var login = $('input[name="login"]').val();
             var pwd = $('input[name="pwd"]').val();
             var code = $('input[name="code"]').val();
             var cpws = $("#cpassword").val();
+            var email = $("#email").val();
             if (login == '') {
                 layer.msg('请输入您的账号');
             } else if (pwd == '') {
@@ -168,12 +179,17 @@
                 layer.msg('输入验证码');
             } else if(pwd!=cpws){
                 layer.msg('两次输入的密码不一致');
-            } else{
+            }else  if(email==''){
+                layer.msg('请输入邮箱');
+            } else  if(!reg.test(email)){
+                layer.msg('请输入正确的邮箱地址');
+            }else{
                 var userinfo={};
                 userinfo.username=$("#username").val();
                 userinfo.code=code;
                 userinfo.password=$("#password").val();
                 userinfo.sex="男";   //默认为男，进去以后修改信息
+                userinfo.email=email;
                 var url='${cp}/front/addregister';
                 $.ajax({
                     url: url,

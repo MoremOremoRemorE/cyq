@@ -1,21 +1,17 @@
 package com.cyq.cyq.service;
 
-import com.cyq.cyq.model.GoodSort;
-import com.cyq.cyq.model.User;
 
-import java.util.List;
+import com.cyq.cyq.model.Good;
 
 public interface GoodService {
 
-    public List<GoodSort> getGoodSortList()throws Exception;
+    public int checkName(String goodname);
 
-    public void deleteGoodSort(String goodsortid) throws Exception;
+    public void addGood(Good good);
 
-    public GoodSort getGoodSortByName(String goodsortname);
+    public void deleteGood(String goodid);
 
-    public void editGoodSort(GoodSort nwegoodSort);
+    public void editGood(Good good);
 
-    public int checkName(String goodsortname);
-
-    public void addGoodSort(GoodSort newgoodSort);
+    public Good selectGoodByName(String goodname);
 }
