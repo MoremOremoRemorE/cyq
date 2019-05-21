@@ -134,18 +134,22 @@
             alert('ajax请求失败');
         },
         success: function (data) {
-            layui.use('tree', function () {
-                layui.tree({
-                    elem: '#layUITree',
-                    nodes: [data.data],
-                    click:function (node) {
-                        if(node.id!='-1'){
-                            $("#goodsort").val(node.name);
-                            $("#goodsortID").val(node.id);
+            if (data.code == '200') {
+                layui.use('tree', function () {
+                    layui.tree({
+                        elem: '#layUITree',
+                        nodes: [data.data],
+                        click: function (node) {
+                            if (node.id != '-1') {
+                                $("#goodsort").val(node.name);
+                                $("#goodsortID").val(node.id);
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            } else {
+                alert(data.msg);
+            }
         }
     });
     layui.config({
