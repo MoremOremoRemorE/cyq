@@ -85,6 +85,14 @@
                                     </div>
                                 </div>
                             </div>--%>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">* 商品分类</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="goodsort" name="goodsort" value=""  class="layui-input" lay-verify="required"  readonly="readonly">
+                                    <input type="text" id="goodsortID" name="goodsortID" value=""  class="layui-input" style="display: none">
+                                    <ul id="layUITree" style="display:block"></ul>
+                                </div>
+                            </div>
                              <div class="layui-form-item">
                                  <label class="layui-form-label">商品图片</label>
                                  <div class="layui-input-inline">
@@ -115,6 +123,35 @@
 <script type="text/javascript" src="../../../static/jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
 <script>
+    $.ajax({
+        async: false,//同步
+        cache: false,
+        url: "${cp}/good/getLayUITree",
+        type: "post",
+        datatype:'json',
+        contentType : 'application/json',
+        error: function () {
+            alert('ajax请求失败');
+        },
+        success: function (data) {
+            if (data.code == '200') {
+                layui.use('tree', function () {
+                    layui.tree({
+                        elem: '#layUITree',
+                        nodes: [data.data],
+                        click: function (node) {
+                            if (node.id != '-1') {
+                                $("#goodsort").val(node.name);
+                                $("#goodsortID").val(node.id);
+                            }
+                        }
+                    });
+                });
+            } else {
+                alert(data.msg);
+            }
+        }
+    });
     layui.config({
         base: '../../../static/layuiadmin/' //静态资源所在路径
     }).extend({
@@ -185,7 +222,7 @@
             goodinfo.address=data.field.address;
             goodinfo.status=data.field.status;
             goodinfo.outtime=data.field.outtime;
-            goodinfo.goodsortid=32      //树形结构暂时没处理，先写死
+            goodinfo.goodsortid=data.field.goodsortID      //树形结构暂时没处理，先写死
             var url='${cp}/good/addgoodinfo';
             $.post(url,goodinfo,function(data){
                 if(data.msg=="success"){
