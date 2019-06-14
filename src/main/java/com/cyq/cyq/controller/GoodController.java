@@ -254,4 +254,9 @@ public class GoodController {
         return map;
     }
 
+    @RequestMapping(value = "/coustomComplaint",method = RequestMethod.GET)
+    public ModelAndView coustomComplaint(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("good/coustomComplaint");
+        return mav;
+    }
 }
