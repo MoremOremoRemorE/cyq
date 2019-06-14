@@ -27,4 +27,8 @@
     <select id="selectGoodByName" resultType="com.cyq.cyq.model.Good">
         select * from good where goodname=#{goodname}
     </select>
-</mapper>
+
+    <select id="getGoodDeal" resultType="com.cyq.cyq.model.GoodDeal">
+        SELECT a.*,b.cusfromname AS fromusername,c.custoname AS tousername, d.goodname FROM gooddeal a, cusfrom b, custo c,good d WHERE a.userfromid=b.cusfromid AND a.usertoid=c.custoid AND a.dealgoodid=d.goodid
+    </select>
+        </mapper>

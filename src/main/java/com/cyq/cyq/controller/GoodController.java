@@ -1,7 +1,9 @@
 package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.Good;
+import com.cyq.cyq.model.GoodDeal;
 import com.cyq.cyq.model.GoodSort;
+import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.GoodService;
 import com.cyq.cyq.service.GoodSortService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -253,5 +256,32 @@ public class GoodController {
         }
         return map;
     }
+    @RequestMapping(value = "/gooddeallist",method = RequestMethod.GET)
+    public ModelAndView gooddeallist(HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        session.getAttribute("roleid");
+        ModelAndView mav = new ModelAndView("good/gooddeallist");
+        return mav;
+    }
+
+    @RequestMapping(value = "/getgooddeallist",method =RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getgooddeallist (HttpServletRequest request,HttpServletResponse response){
+        Map<String,Object> resultmap = new HashMap<String,Object>();
+        List <GoodDeal> gooddeallist = new ArrayList<GoodDeal>();
+        try {
+            gooddeallist = goodService.getGoodDeal();
+
+            resultmap.put("data",gooddeallist);
+            resultmap.put("code","1000");
+            resultmap.put("msg","");
+            resultmap.put("code","0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultmap;
+    }
+
+
 
 }

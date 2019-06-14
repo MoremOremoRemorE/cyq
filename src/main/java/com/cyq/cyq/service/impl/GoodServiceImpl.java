@@ -3,6 +3,7 @@ package com.cyq.cyq.service.impl;
 import com.cyq.cyq.mapper.GoodMapper;
 import com.cyq.cyq.mapper.GoodSortMapper;
 import com.cyq.cyq.model.Good;
+import com.cyq.cyq.model.GoodDeal;
 import com.cyq.cyq.model.GoodSort;
 import com.cyq.cyq.service.GoodService;
 import com.cyq.cyq.service.GoodSortService;
@@ -40,5 +41,10 @@ public class GoodServiceImpl implements GoodService {
     @Override
     public Good selectGoodByName(String goodname) {
        return  goodMapper.selectGoodByName(goodname);
+    }
+
+    @Override
+    public List<GoodDeal> getGoodDeal() {
+        return goodMapper.getGoodDeal();
     }
 }

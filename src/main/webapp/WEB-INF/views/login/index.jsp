@@ -293,6 +293,15 @@
                              <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>--%>
                         </dl>
                     </li>
+                    <li data-name="app" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="商品交易记录" lay-direction="2">
+                            <i class="layui-icon layui-icon-app"></i>
+                            <cite>商品交易记录</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd data-name="list"><a lay-href="${cp}/good/gooddeallist">商品交易记录</a></dd>
+                        </dl>
+                    </li>
                     <%--<li data-name="app" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="应用" lay-direction="2">
                             <i class="layui-icon layui-icon-app"></i>

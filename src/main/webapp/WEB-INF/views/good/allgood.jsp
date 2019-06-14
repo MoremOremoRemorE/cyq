@@ -70,15 +70,16 @@
             ,url: '${cp}/good/getallgood'
             ,toolbar: '#test-table-toolbar-toolbarDemo'
             ,title: '用户数据表'
+            ,cellMinWidth: 80
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // ,{field:'goodid', title:'ID', width:100, fixed: 'left', unresize: true, sort: true}
-                ,{field:'goodname', title:'商品名', width:200}
-                ,{field:'price', title:'商品价格', width:200, sort: true}
-                ,{field:'memprice', title:'会员价', width:200, sort: true}
-                ,{field:'address', title:'商品地址', width:428, sort: true}
-                ,{field:'outtime', title:'售出时间', width:200, sort: true}
-                ,{field:'status', title:'商品状态', width:184, sort: true}
+                ,{field:'goodname', title:'商品名'}
+                ,{field:'price', title:'商品价格', sort: true}
+                ,{field:'memprice', title:'会员价', sort: true}
+                ,{field:'address', title:'商品地址',  sort: true}
+                ,{field:'outtime', title:'售出时间',  sort: true}
+                ,{field:'status', title:'商品状态', sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:300}
             ]],
             done: function (res, curr, count) {

@@ -1,5 +1,6 @@
 package com.cyq.cyq.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -18,7 +19,7 @@ public class SendEmail {
         String to = email;
 
         // 发件人电子邮箱
-        String from = "1334538961@qq.com";
+        String from = "3492321742@qq.com";
 
         // 指定发送邮件的主机为 smtp.qq.com
         String host = "smtp.qq.com";  //QQ 邮件服务器
@@ -37,7 +38,7 @@ public class SendEmail {
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("1334538961@qq.com", "yrwssdsuxjechbjj"); //发件人邮件用户名、密码
+                return new PasswordAuthentication("3492321742@qq.com", "qdktgketbuxodcba"); //发件人邮件用户名、密码
             }
         });
 
@@ -46,7 +47,8 @@ public class SendEmail {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: 头部头字段
-            message.setFrom(new InternetAddress(from));
+            message.setFrom (new InternetAddress (from, "这里是需要的昵称", "UTF-8"));
+        //    message.setFrom(new InternetAddress(from));
 
             // Set To: 头部头字段
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
@@ -68,6 +70,8 @@ public class SendEmail {
             Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 
@@ -76,7 +80,7 @@ public class SendEmail {
         String to = email;
 
         // 发件人电子邮箱
-        String from = "1334538961@qq.com";
+        String from = "3492321742@qq.com";
 
         // 指定发送邮件的主机为 smtp.qq.com
         String host = "smtp.qq.com";  //QQ 邮件服务器
@@ -95,7 +99,7 @@ public class SendEmail {
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("1334538961@qq.com", "yrwssdsuxjechbjj"); //发件人邮件用户名、密码
+                return new PasswordAuthentication("3492321742@qq.com", "qdktgketbuxodcba"); //发件人邮件用户名、密码
             }
         });
 
@@ -104,7 +108,8 @@ public class SendEmail {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: 头部头字段
-            message.setFrom(new InternetAddress(from));
+         //   message.setFrom (new InternetAddress (from, "这里是需要的昵称", "UTF-8"));
+             message.setFrom(new InternetAddress(from));
 
             // Set To: 头部头字段
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
