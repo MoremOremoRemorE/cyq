@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+    <link href="/favicon.ico" />
     <meta charset="utf-8">
     <title>layuiAdmin 控制台主页一</title>
     <meta name="renderer" content="webkit">

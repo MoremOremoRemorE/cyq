@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
+    <link href="/favicon.ico" />
     <%
         String path = request.getContextPath();
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
@@ -21,6 +22,7 @@
     <link href="../../../static/login/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="../../../static/login/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="../../../static/login/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="../../../js/live2d/assets/waifu.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class='login'>
@@ -68,6 +70,19 @@
     <div class='disclaimer'>
         <p>这里本来是两个迎宾小姐姐的</p>
     </div>
+    <div class="waifu">
+        <div class="waifu-tips"></div>
+        <canvas id="live2d" class="live2d"></canvas>
+        <div class="waifu-tool">
+            <span class="fui-home"></span>
+            <span class="fui-chat"></span>
+            <span class="fui-eye"></span>
+            <span class="fui-user"></span>
+            <span class="fui-photo"></span>
+            <span class="fui-info-circle"></span>
+            <span class="fui-cross"></span>
+        </div>
+    </div>
 </div>
 <div class='authent'>
     <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
@@ -87,12 +102,16 @@
 <script src="../../../static/login/layui/layui.js" type="text/javascript"></script>
 <script src="../../../static/login/js/Particleground.js" type="text/javascript"></script>
 <script src="../../../static/login/js/Treatment.js" type="text/javascript"></script>
+<script src="../../../js/live2d/assets/waifu-tips.js" type="text/javascript"></script>
+<script src="../../../js/live2d/assets/live2d.js" type="text/javascript"></script>
+<%--<script src="../../../js/live2d/assets/autoload.js" type="text/javascript"></script>--%>
 <script src="../../../static/login/js/jquery.mockjax.js" type="text/javascript"></script>
 <script type="text/javascript">
     var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
 
     var CodeVal = 0;
     Code();
+    initLive2D();
     function Code() {
         if(canGetCookie == 1){
             createCode("AdminCode");
@@ -101,6 +120,16 @@
         }else{
             showCheck(createCode(""));
         }
+    }
+    function initLive2D() {
+        // live2d_settings['modelId'] = 5;                  // 默认模型 ID
+        live2d_settings['modelTexturesId'] = 1;          // 默认材质 ID
+        live2d_settings['modelStorage'] = false;         // 不储存模型 ID
+        live2d_settings['modelId'] = 1;
+        live2d_settings['modelTexturesId'] = 87;
+        live2d_settings['waifuEdgeSide']='left:300';
+        live2d_settings['waifuDraggable']='disable';
+        initModel("../../../js/live2d/assets/waifu-tips.json")
     }
     function showCheck(a) {
         CodeVal = a;
