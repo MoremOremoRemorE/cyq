@@ -259,4 +259,13 @@ public class GoodController {
         ModelAndView mav = new ModelAndView("good/coustomComplaint");
         return mav;
     }
+
+    @RequestMapping(value = "/goodsell", method = RequestMethod.GET)
+    public ModelAndView goodsell(HttpServletRequest request) {
+        //选择所有的商品信息
+        List<Good> goodlist =  goodService.selectAllGood();
+        ModelAndView mav = new ModelAndView("good/goodsell");
+        mav.addObject("goodlist",goodlist);
+        return mav;
+    }
 }

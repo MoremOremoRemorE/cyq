@@ -41,4 +41,9 @@ public class GoodServiceImpl implements GoodService {
     public Good selectGoodByName(String goodname) {
        return  goodMapper.selectGoodByName(goodname);
     }
+
+    @Override
+    public List<Good> selectAllGood() {
+        return goodMapper.selectAllGood();
+    }
 }

@@ -2,41 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyq.cyq.mapper.UserMapper">
     <select id="getUser" resultType="com.cyq.cyq.model.User">
-        SELECT a.*,b.rolename FROM login a ,role b WHERE a.roleid=b.roleid;
+        SELECT a.*,b.rolename FROM userinfo a ,role b WHERE a.roleid=b.roleid;
     </select>
     <select id="getNormalUser" resultType="com.cyq.cyq.model.User">
-        SELECT a.*,b.rolename FROM login a ,role b WHERE a.roleid=b.roleid and a.roleid=2;
+        SELECT a.*,b.rolename FROM userinfo a ,role b WHERE a.roleid=b.roleid and a.roleid=2;
     </select>
 
     <delete id="deleteUser" parameterType="String">
-        delete from login where userid =#{id}
+        delete from userinfo where userid =#{id}
     </delete>
     <insert id="addUser" parameterType="com.cyq.cyq.model.User">
-        insert into login(username,password,sex,time,roleid,email)values(#{username},#{password},#{sex},#{time},#{roleid},#{email})
+        insert into userinfo(username,password,sex,time,roleid,email)values(#{username},#{password},#{sex},#{time},#{roleid},#{email})
     </insert>
    <!-- <insert id="addUserRole" parameterType="com.cyq.cyq.model.UserRole">
         insert into userrole(userid,roleid)values(#{userid},#{roleid})
     </insert>-->
     <select id="getUserByName" resultType="com.cyq.cyq.model.User">
-        select * from login where username=#{username}
+        select * from userinfo where username=#{username}
     </select>
     <select id="getUserById" resultType="com.cyq.cyq.model.User">
-        select * from login where userid=#{userid}
+        select * from userinfo where userid=#{userid}
     </select>
     <select id="regiterByName" parameterType="java.lang.String"  resultType="int">
-        select count(*) from login where username=#{username}
+        select count(*) from userinfo where username=#{username}
     </select>
     <select id="getuserCount" parameterType="java.lang.String" resultType="int">
-        select count(*) from login
+        select count(*) from userinfo
     </select>
     <select id="selectUserId" parameterType="java.lang.String" resultType="String">
-        select MAX(userid) from login
+        select MAX(userid) from userinfo
     </select>
     <select id="getUserByName1" resultType="com.cyq.cyq.model.User">
-        select * from login where username=#{username}
+        select * from userinfo where username=#{username}
     </select>
    <!-- <update id="editUser" parameterType="com.cyq.cyq.model.User">
-        update login
+        update userinfo
             set
             roleid=#{roleid},
             phone=#{phone},
@@ -45,7 +45,7 @@
         where userid=#{userid}
     </update>-->
     <update id="editUser" parameterType="com.cyq.cyq.model.User">
-        update login
+        update userinfo
         <trim prefix="set" suffixOverrides=",">
             <if test="roleid!=null">roleid=#{roleid},</if>
             <if test="phone!=null">phone=#{phone},</if>
@@ -56,7 +56,7 @@
         where userid=#{userid}
     </update>
     <update id="editUserByRole" parameterType="com.cyq.cyq.model.User">
-        update login
+        update userinfo
         <set>
             <if test="roleid != null">roleid=#{roleid}</if>
         </set>

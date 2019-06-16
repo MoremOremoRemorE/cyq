@@ -31,4 +31,8 @@
     <select id="getGoodDeal" resultType="com.cyq.cyq.model.GoodDeal">
         SELECT a.*,b.cusfromname AS fromusername,c.custoname AS tousername, d.goodname FROM gooddeal a, cusfrom b, custo c,good d WHERE a.userfromid=b.cusfromid AND a.usertoid=c.custoid AND a.dealgoodid=d.goodid
     </select>
-        </mapper>
+
+    <select id="selectAllGood" resultType="com.cyq.cyq.model.Good">
+        select * from good
+    </select>
+</mapper>

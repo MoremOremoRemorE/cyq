@@ -279,7 +279,7 @@
                             <cite>商品销售管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="${cp}/good/goodlist">商品销售</a></dd>
+                            <dd><a lay-href="${cp}/good/goodsell">商品销售</a></dd>
 
                         </dl>
                     </li>

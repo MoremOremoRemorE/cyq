@@ -22,4 +22,6 @@ public interface GoodMapper {
     public Good selectGoodByName(String goodname);
 
     public List<GoodDeal> getGoodDeal();
+
+    List<Good> selectAllGood();
 }
