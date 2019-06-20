@@ -16,8 +16,22 @@
     <link rel="stylesheet" href="../../../static/layuiadmin/layui/css/layui.css"  media="all">
 </head>
 <body>
-
-<table class="layui-hide" id="test"></table>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="demoTable">
+                    搜索客户：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="keyword" id="demoReload" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                </div>
+                <table class="layui-hide" id="test"></table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="../../../static/layuiadmin/layui/layui.js" charset="utf-8"></script>
@@ -30,16 +44,33 @@
             ,url:'${cp}/good/getgooddeallist'
             ,cellMinWidth: 80
             ,cols: [[
-                 {field:'gooddealid', title: '商品交易ID', sort: true}
+                 {field:'username', title: '客户姓名'}
                 ,{field:'goodname',  title: '商品名称'}
-                 ,{field:'fromusername',  title: '发起用户'}
-                ,{field:'tousername',  title: '接受用户', sort: true}
-                ,{field:'dealaddress',  title: '交易地址'}
-                ,{field:'dealtime', title: '交易时间', minWidth: 150}
+                 ,{field:'price',  title: '商品价格（元）' ,sort: true}
+                ,{field:'address',  title: '客户地址' }
+                ,{field:'date',  title: '交易时间'}
             ]]
+            ,id: 'testReload'
             ,page: true
         });
+        var $ = layui.$, active = {
+            reload: function () {
+                var demoReload = $('#demoReload');
+
+                table.reload('testReload', {
+                    where: {
+                        keyword: demoReload.val()
+                    }
+                });
+            }
+        };
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
+
+
 </script>
 
 </body>

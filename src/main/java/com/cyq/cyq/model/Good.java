@@ -11,7 +11,8 @@ public class Good {
     private String memprice;
     private String address;
     private String status;
-    private String outtime;
+    private String rukutime;
+    private int goodnumber;
 
     public String getGoodid() {
         return goodid;
@@ -69,11 +70,19 @@ public class Good {
         this.status = status;
     }
 
-    public String getOuttime() {
-        return outtime;
+    public String getRukutime() {
+        return rukutime;
     }
 
-    public void setOuttime(String outtime) {
-        this.outtime = outtime;
+    public void setRukutime(String rukutime) {
+        this.rukutime = rukutime;
+    }
+
+    public int getGoodnumber() {
+        return goodnumber;
+    }
+
+    public void setGoodnumber(int goodnumber) {
+        this.goodnumber = goodnumber;
     }
 }

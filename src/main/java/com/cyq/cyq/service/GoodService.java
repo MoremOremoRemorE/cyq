@@ -18,4 +18,6 @@ public interface GoodService {
     public Good selectGoodByName(String goodname);
 
     List<Good> selectAllGood();
+
+    int updateGoodNumberByGoodId(String goodid);
 }

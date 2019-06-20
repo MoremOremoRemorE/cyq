@@ -93,11 +93,11 @@
             <optional>true</optional>
         </dependency>
         <!-- 分页插件 -->
-         <dependency>
+       <!--  <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>4.1.6</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

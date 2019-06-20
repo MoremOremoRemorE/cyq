@@ -32,7 +32,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">商品信息</div>
+                <div class="layui-card-header">客户信息</div>
                 <div class="layui-card-body">
 
                     <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
@@ -41,7 +41,6 @@
                     <script type="text/html" id="test-table-toolbar-toolbarDemo">
                         <div class="layui-btn-container">
                             <button class="layui-btn layui-btn-sm" lay-event="export">导出所有数据</button>
-                            <button class="layui-btn layui-btn-sm" lay-event="add">新增商品信息</button>
                         </div>
                     </script>
 
@@ -68,20 +67,20 @@
             ,$ = layui.jquery;
         var ins1= table.render({
             elem: '#test-table-toolbar'
-            ,url: '${cp}/good/getallgood'
+            ,url: '${cp}/custom/getallcustom'
             ,toolbar: '#test-table-toolbar-toolbarDemo'
             ,title: '用户数据表'
             ,cellMinWidth: 80
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                // ,{field:'goodid', title:'ID', width:100, fixed: 'left', unresize: true, sort: true}
-                ,{field:'goodname', title:'商品名'}
-                ,{field:'price', title:'商品价格', sort: true}
-                ,{field:'memprice', title:'会员价', sort: true}
-                ,{field:'address', title:'商品地址',  sort: true}
-                ,{field:'rukutime', title:'入库时间',  sort: true}
-                ,{field:'status', title:'商品状态', sort: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:300}
+                ,{field:'userid', title:'ID', width:100, fixed: 'left', unresize: true, sort: true}
+                ,{field:'username', title:'用户名', width:200}
+                ,{field:'phone', title:'电话', width:316, templet: function(res){
+                        return '<em>'+ res.phone +'</em>'
+                    }}
+               /* ,{field:'sex', title:'性别', width:284, sort: true}
+                ,{field:'rolename', title:'角色名称', width:284, sort: true}*/
+                ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:400}
             ]],
             done: function (res, curr, count) {
                 exportData=res.data;
@@ -93,17 +92,7 @@
         table.on('toolbar(test-table-toolbar)', function(obj){
             if(obj.event === 'export'){
                 table.exportFile(ins1.config.id,exportData, 'xls');
-            }else if(obj.event === 'add'){
-                layer.open({
-                    type: 2,
-                    area: ['1500px', '800px'],
-                    title: "添加商品信息",
-                    fixed: false, //不固定
-                    shade: 0.8,
-                    shadeClose: true,
-                    content:'${cp}/good/addgood'
-                });
-            }
+            };
         });
 
         table.on('tool(test-table-toolbar)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
@@ -112,11 +101,14 @@
             var tr = obj.tr; //获得当前行 tr 的DOM对象
 
             if(layEvent === 'del'){ //删除
-                layer.confirm('真的删除：'+data.goodname+"商品吗?", function(index){
+                layer.confirm('真的删除用户为：'+data.username+"的用户吗?", function(index){
+
+                    //console.log(data.p_id);
+                    //向服务端发送删除指令
                     $.ajax({
-                        url:'${cp}/good/deletegood',
+                        url:'${cp}/custom/deletecustom',
                         type:'post',
-                        data:{'id':data.goodid},//向服务端发送删除的id
+                        data:{'id':data.userid},//向服务端发送删除的id
                         async: false,
                         success:function(data){
                             if(data.msg =='success'){
@@ -135,12 +127,12 @@
             } else if(layEvent === 'edit') { //编辑
                     layer.open({
                         type: 2,
-                        area: ['1500px', '800px'],
-                        title: "修改商品信息",
+                        area: ['500px', '270px'],
+                        title: "修改客户信息",
                         fixed: false, //不固定
                         shade: 0.8,
                         shadeClose: true,
-                        content:'${cp}/good/editgood?goodid='+data.goodid+'&goodname='+data.goodname+'&price='+data.price+'&memprice='+data.memprice+'&address='+data.address+'&outtime='+data.outtime
+                        content:'${cp}/custom/editcustom?userid='+data.userid+'&phone='+data.phone+'&username='+data.username
                     });
                 }
         });

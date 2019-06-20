@@ -33,6 +33,12 @@
     </select>
 
     <select id="selectAllGood" resultType="com.cyq.cyq.model.Good">
-        select * from good
+        select * from good where status=0
     </select>
+
+    <update id="updateGoodNumberByGoodId" parameterType="com.cyq.cyq.model.Good">
+        update good
+        set goodnumber=goodnumber-1
+        where goodid=#{goodid}
+    </update>
 </mapper>

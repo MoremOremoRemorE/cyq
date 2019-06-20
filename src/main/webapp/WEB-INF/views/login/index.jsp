@@ -388,7 +388,7 @@
                             <cite>客户信息管理</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd data-name="list"><a lay-href="${cp}/good/gooddeallist">客户信息</a></dd>
+                            <dd data-name="list"><a lay-href="${cp}/custom/customlist">客户信息</a></dd>
                         </dl>
                     </li>
                     <li data-name="set" class="layui-nav-item">

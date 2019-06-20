@@ -22,7 +22,7 @@
     <legend>商品销售</legend>
 </fieldset>
 
-<form class="layui-form" action="">
+<form class="layui-form" action="${cp}/good/addgoodsell" method="get">
     <%--<div class="layui-form-item">
         <label class="layui-form-label">客户姓名</label>
         <div class="layui-input-block">
@@ -33,6 +33,7 @@
         <label class="layui-form-label">客户姓名</label>
         <div class="layui-input-block">
             <input type="text" name="username" style="width:400px;" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入购买客户姓名" autocomplete="off" class="layui-input">
+            <input type="hidden" name="userid" value="${userid}">
         </div>
     </div>
     <div class="layui-form-item">
@@ -80,7 +81,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户地址</label>
         <div class="layui-input-inline">
-            <input type="password" name="password" lay-verify="pass" placeholder="请输入用户收货地址" autocomplete="off" class="layui-input" style="width:400px;">
+            <input type="text" name="address" lay-verify="required" placeholder="请输入用户收货地址" autocomplete="off" class="layui-input" style="width:400px;">
         </div>
     </div>
 
@@ -112,17 +113,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品信息</label>
             <div class="layui-input-inline"  style="width:500px;">
-                <select name="modules" lay-verify="required" lay-search="">
+                <select name="goodmsg" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                      <c:forEach items="${goodlist}" var="goodlist">
-                      <option value="${goodlist.goodid}">${goodlist.goodname}</option>  
+                      <option value="${goodlist.goodid}">${goodlist.goodname}(${goodlist.goodnumber})</option>  
                      </c:forEach>
                 </select>
             </div>
         </div>
     </div>
 
-    <div class="layui-form-item">
+    <%--<div class="layui-form-item">
         <label class="layui-form-label">联动选择框</label>
         <div class="layui-input-inline">
             <select name="quiz1">
@@ -150,62 +151,46 @@
                 <option value="拱墅区">临安市</option>
             </select>
         </div>
-        <div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>
-    </div>
+    </div>--%>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">复选框</label>
+        <label class="layui-form-label">其他服务</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="like[write]" title="写作">
-            <input type="checkbox" name="like[read]" title="阅读" checked="">
-            <input type="checkbox" name="like[game]" title="游戏">
+            <input type="checkbox" name="gohome" title="送货上门">
+            <input type="checkbox" name="fenqi" title="分期付款">
         </div>
     </div>
 
-    <div class="layui-form-item" pane="">
-        <label class="layui-form-label">原始复选框</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
-            <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
-            <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
-        </div>
-    </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">开关-默认关</label>
+        <label class="layui-form-label">是否开发票</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+            <input type="checkbox" name="fapiao" lay-skin="switch" lay-text="ON|OFF">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">开关-默认开</label>
-        <div class="layui-input-block">
-            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-        </div>
-    </div>
-    <div class="layui-form-item">
+    <%--<div class="layui-form-item">
         <label class="layui-form-label">单选框</label>
         <div class="layui-input-block">
             <input type="radio" name="sex" value="男" title="男" checked="">
             <input type="radio" name="sex" value="女" title="女">
             <input type="radio" name="sex" value="禁" title="禁用" disabled="">
         </div>
-    </div>
+    </div>--%>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">普通文本域</label>
+        <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea placeholder="请输入内容" name="note" class="layui-textarea"></textarea>
         </div>
     </div>
-    <!--<div class="layui-form-item layui-form-text">
-      <label class="layui-form-label">编辑器</label>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">其他附件</label>
       <div class="layui-input-block">
         <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
       </div>
-    </div>-->
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit  lay-filter="demo1">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -213,6 +198,7 @@
 
 <script src="../../../static/layuiadmin/layui/layui.js" charset="utf-8"></script>
 <script>
+
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
             ,layer = layui.layer
@@ -220,6 +206,14 @@
             ,laydate = layui.laydate;
 
         //日期
+        if('${status}'==1000){
+            layer.msg("购买成功");
+        }else if('${status}'==1001){
+            layer.msg("购买失败");
+        }else if('${status}'==998){
+            layer.msg("用户添加失败");
+        }
+
         laydate.render({
             elem: '#date'
         });
@@ -256,22 +250,11 @@
 
         //监听提交
         form.on('submit(demo1)', function(data){
-            layer.alert(JSON.stringify(data.field), {
+           /* layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })
-            return false;
+            return false;*/
         });
-
-        //表单初始赋值
-        form.val('example', {
-            "username": "贤心" // "name": "value"
-            ,"password": "123456"
-            ,"interest": 1
-            ,"like[write]": true //复选框选中状态
-            ,"close": true //开关状态
-            ,"sex": "女"
-            ,"desc": "我爱 layui"
-        })
     });
 </script>
 

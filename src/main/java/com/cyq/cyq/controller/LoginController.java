@@ -1,6 +1,7 @@
 package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.User;
+import com.cyq.cyq.service.GoodService;
 import com.cyq.cyq.service.UserService;
 import com.cyq.cyq.service.SendEmailService;
 import com.cyq.cyq.system.dto.AskResult;
@@ -25,8 +26,6 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private UserService userService;
-    /*@Autowired
-    private MenuService menuService;*/
     @Autowired
     private User user;
     @Autowired

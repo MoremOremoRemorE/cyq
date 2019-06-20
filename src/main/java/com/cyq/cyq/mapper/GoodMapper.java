@@ -24,4 +24,6 @@ public interface GoodMapper {
     public List<GoodDeal> getGoodDeal();
 
     List<Good> selectAllGood();
+
+    int updateGoodNumberByGoodId(String goodid);
 }
