@@ -1,13 +1,11 @@
 package com.cyq.cyq.controller;
 
-import com.cyq.cyq.model.CustomerInfo;
-import com.cyq.cyq.model.Good;
-import com.cyq.cyq.model.GoodDeal;
-import com.cyq.cyq.model.GoodSort;
+import com.cyq.cyq.model.*;
 import com.cyq.cyq.service.CustomerService;
 import com.cyq.cyq.service.GoodDealService;
 import com.cyq.cyq.service.GoodService;
 import com.cyq.cyq.service.GoodSortService;
+import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +34,19 @@ public class GoodController {
     private CustomerService customerService;
     @Autowired
     private GoodDealService goodDealService;
+
+    @RequestMapping(value = "/getLayUITree",method = RequestMethod.POST)
+    @ResponseBody
+    public AskResult getLayUITree() {
+        LayUITree layUITree;
+        try {
+            layUITree = goodService.getLayUITree();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return AskResult.failed("加载商品分类失败!");
+        }
+        return AskResult.success(layUITree);
+    }
 
     @RequestMapping(value = "/goodlist", method = RequestMethod.GET)
     public ModelAndView goodlist(HttpServletRequest request) {
