@@ -13,310 +13,51 @@
     <link rel="stylesheet" href="../../../static/layuiadmin/style/admin.css" media="all">
 </head>
 <body>
-
-<%--<div class="layui-fluid">
+<%--<img src="../../../static/login/img/timg.jpg" height="100%" width="100%"/>--%>
+<div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-md8">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md6">
-                    <div class="layui-card">
-                        <div class="layui-card-header">快捷方式</div>
-                        <div class="layui-card-body">
-
-                            <div class="layui-carousel layadmin-carousel layadmin-shortcut">
-                                <div carousel-item>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="home/homepage1.html">
-                                                <i class="layui-icon layui-icon-console"></i>
-                                                <cite>主页一</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="home/homepage2.html">
-                                                <i class="layui-icon layui-icon-chart"></i>
-                                                <cite>主页二</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="component/layer/list.html">
-                                                <i class="layui-icon layui-icon-template-1"></i>
-                                                <cite>弹层</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a layadmin-event="im">
-                                                <i class="layui-icon layui-icon-chat"></i>
-                                                <cite>聊天</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="component/progress/index.html">
-                                                <i class="layui-icon layui-icon-find-fill"></i>
-                                                <cite>进度条</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="app/workorder/list.html">
-                                                <i class="layui-icon layui-icon-survey"></i>
-                                                <cite>工单</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="user/user/list.html">
-                                                <i class="layui-icon layui-icon-user"></i>
-                                                <cite>用户</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/system/website.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>设置</cite>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="set/user/info.html">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>我的资料</cite>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-md6">
-                    <div class="layui-card">
-                        <div class="layui-card-header">待办事项</div>
-                        <div class="layui-card-body">
-
-                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
-                                <div carousel-item>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="app/content/comment.html" class="layadmin-backlog-body">
-                                                <h3>待审评论</h3>
-                                                <p><cite>66</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="app/forum/list.html" class="layadmin-backlog-body">
-                                                <h3>待审帖子</h3>
-                                                <p><cite>12</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="template/goodslist.html" class="layadmin-backlog-body">
-                                                <h3>待审商品</h3>
-                                                <p><cite>99</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a href="javascript:;" onclick="layer.tips('不跳转', this, {tips: 3});" class="layadmin-backlog-body">
-                                                <h3>待发货</h3>
-                                                <p><cite>20</cite></p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs6">
-                                            <a href="javascript:;" class="layadmin-backlog-body">
-                                                <h3>待审友情链接</h3>
-                                                <p><cite style="color: #FF5722;">5</cite></p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-header">数据概览</div>
-                        <div class="layui-card-body">
-
-                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-dataview">
-                                <div carousel-item id="LAY-index-dataview">
-                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="layui-card">
-                        <div class="layui-tab layui-tab-brief layadmin-latestData">
-                            <ul class="layui-tab-title">
-                                <li class="layui-this">今日热搜</li>
-                                <li>今日热帖</li>
-                            </ul>
-                            <div class="layui-tab-content">
-                                <div class="layui-tab-item layui-show">
-                                    <table id="LAY-index-topSearch"></table>
-                                </div>
-                                <div class="layui-tab-item">
-                                    <table id="LAY-index-topCard"></table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-col-md4">
+        <div class="layui-col-md6">
             <div class="layui-card">
-                <div class="layui-card-header">版本信息</div>
-                <div class="layui-card-body layui-text">
-                    <table class="layui-table">
-                        <colgroup>
-                            <col width="100">
-                            <col>
-                        </colgroup>
-                        <tbody>
-                        <tr>
-                            <td>当前版本</td>
-                            <td>
-                                <script type="text/html" template>
-                                    v{{ layui.admin.v }}
-                                    <a href="http://fly.layui.com/docs/3/" target="_blank" style="padding-left: 15px;">更新日志</a>
-                                </script>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>基于框架</td>
-                            <td>
-                                <script type="text/html" template>
-                                    layui-v{{ layui.v }}
-                                </script>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>主要特色</td>
-                            <td>零门槛 / 响应式 / 清爽 / 极简</td>
-                        </tr>
-                        <tr>
-                            <td>获取渠道</td>
-                            <td style="padding-bottom: 0;">
-                                <div class="layui-btn-container">
-                                    <a href="http://www.layui.com/admin/" target="_blank" class="layui-btn layui-btn-danger">获取授权</a>
-                                    <a href="http://fly.layui.com/download/layuiAdmin/" target="_blank" class="layui-btn">立即下载</a>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="layui-card">
-                <div class="layui-card-header">效果报告</div>
-                <div class="layui-card-body layadmin-takerates">
-                    <div class="layui-progress" lay-showPercent="yes">
-                        <h3>转化率（日同比 28% <span class="layui-edge layui-edge-top" lay-tips="增长" lay-offset="-15"></span>）</h3>
-                        <div class="layui-progress-bar" lay-percent="65%"></div>
-                    </div>
-                    <div class="layui-progress" lay-showPercent="yes">
-                        <h3>签到率（日同比 11% <span class="layui-edge layui-edge-bottom" lay-tips="下降" lay-offset="-15"></span>）</h3>
-                        <div class="layui-progress-bar" lay-percent="32%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-card">
-                <div class="layui-card-header">实时监控</div>
-                <div class="layui-card-body layadmin-takerates">
-                    <div class="layui-progress" lay-showPercent="yes">
-                        <h3>CPU使用率</h3>
-                        <div class="layui-progress-bar" lay-percent="58%"></div>
-                    </div>
-                    <div class="layui-progress" lay-showPercent="yes">
-                        <h3>内存占用率</h3>
-                        <div class="layui-progress-bar layui-bg-red" lay-percent="90%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-card">
-                <div class="layui-card-header">产品动态</div>
+                <div class="layui-card-header">商品销售统计</div>
                 <div class="layui-card-body">
-                    <div class="layui-carousel layadmin-carousel layadmin-news" data-autoplay="true" data-anim="fade" lay-filter="news">
-                        <div carousel-item>
-                            <div><a href="http://fly.layui.com/docs/2/" target="_blank" class="layui-bg-red">layuiAdmin 快速上手文档</a></div>
-                            <div><a href="http://fly.layui.com/vipclub/list/layuiadmin/" target="_blank" class="layui-bg-green">layuiAdmin 会员讨论专区</a></div>
-                            <div><a href="http://www.layui.com/admin/#get" target="_blank" class="layui-bg-blue">获得 layui 官方后台模板系统</a></div>
-                        </div>
+                    <div id ="goodout">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">用户访问统计</div>
+                <div class="layui-card-body">
+                    <div id ="usercount">
                     </div>
                 </div>
             </div>
 
+        </div>
+        <div class="layui-col-md6">
             <div class="layui-card">
-                <div class="layui-card-header">
-                    作者心语
-                    <i class="layui-icon layui-icon-tips" lay-tips="要支持的噢" lay-offset="5"></i>
+                <div class="layui-card-header">商品入库统计</div>
+                <div class="layui-card-body">
+                    <div id ="goodin">
+                    </div>
                 </div>
-                <div class="layui-card-body layui-text layadmin-text">
-                    <p>一直以来，layui 秉承无偿开源的初心，虔诚致力于服务各层次前后端 Web 开发者，在商业横飞的当今时代，这一信念从未动摇。即便身单力薄，仍然重拾决心，埋头造轮，以尽可能地填补产品本身的缺口。</p>
-                    <p>在过去的一段的时间，我一直在寻求持久之道，已维持你眼前所见的一切。而 layuiAdmin 是我们尝试解决的手段之一。我相信真正有爱于 layui 生态的你，定然不会错过这一拥抱吧。</p>
-                    <p>子曰：君子不用防，小人防不住。请务必通过官网正规渠道，获得 <a href="http://www.layui.com/admin/" target="_blank">layuiAdmin</a>！</p>
-                    <p>—— 贤心（<a href="http://www.layui.com/" target="_blank">layui.com</a>）</p>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">当前时间（充数）</div>
+                <div class="layui-card-body">
+                    <div id ="time">
+                    </div>
                 </div>
             </div>
         </div>
-
+       </div>
     </div>
-</div>--%>
-<img src="../../../static/login/img/timg.jpg" height="100%" width="100%"/>
-
+</div>
+<script src="https://code.highcharts.com.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/highcharts-more.js"></script>
+<script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js?t=1"></script>
 <script>
     layui.config({
@@ -324,6 +65,331 @@
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['index', 'console']);
+
+    //3d
+    function goodlist(){
+        var url='${cp}/good/getgoodchart';
+        $.post(url,null,function (data) {
+            var chart = Highcharts.chart('goodout',{
+                chart: {
+                    type: 'column',
+                    margin: 75,
+                    options3d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 0,
+                        depth: 100,
+                        viewDistance: 200,      // 视图距离，它对于计算角度影响在柱图和散列图非常重要。此值不能用于3D的饼图
+                        frame: {                // Frame框架，3D图包含柱的面板，我们以X ,Y，Z的坐标系来理解，X轴与 Z轴所形成
+                            // 的面为bottom，Y轴与Z轴所形成的面为side，X轴与Y轴所形成的面为back，bottom、
+                            // side、back的属性一样，其中size为感官理解的厚度，color为面板颜色
+                            bottom: {
+                                size: 10
+                            },
+                            side: {
+                                size: 1,
+                                color: 'transparent'
+                            },
+                            back: {
+                                size: 1,
+                                color: 'transparent'
+                            }
+                        }
+                    },
+                },
+                title: {
+                    text: '商品统计数据'
+                },
+                subtitle: {
+                    text: '包含所有的商品'
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                 //   categories: Highcharts.getOptions().lang.shortMonths
+                    categories:data.goodname,
+                    labels: {
+                        formatter: function() {
+
+                         var labelVal = this.value;
+
+                         var reallyVal = labelVal;
+
+                         if(labelVal.length > 3) {
+
+                            reallyVal = labelVal.substr(0,3)+"<br/>"+labelVal.substring(3,labelVal.length-1);
+                         }
+                         return reallyVal;
+                      }
+                   }
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    }
+                },
+                series: [{
+                    name: '商品销售',
+                    data: data.goodnumber
+                }]
+            });
+        })
+    }
+    goodlist();
+
+
+    var chart = Highcharts.chart('goodin',{
+        chart: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+                enabled: true,
+                alpha: 10,
+                beta: 0,
+                depth: 100,
+                viewDistance: 200,      // 视图距离，它对于计算角度影响在柱图和散列图非常重要。此值不能用于3D的饼图
+                frame: {                // Frame框架，3D图包含柱的面板，我们以X ,Y，Z的坐标系来理解，X轴与 Z轴所形成
+                    // 的面为bottom，Y轴与Z轴所形成的面为side，X轴与Y轴所形成的面为back，bottom、
+                    // side、back的属性一样，其中size为感官理解的厚度，color为面板颜色
+                    bottom: {
+                        size: 10
+                    },
+                    side: {
+                        size: 1,
+                        color: 'transparent'
+                    },
+                    back: {
+                        size: 1,
+                        color: 'transparent'
+                    }
+                }
+            },
+        },
+        title: {
+            text: '商品统计数据'
+        },
+        subtitle: {
+            text: '包含所有的商品'
+        },
+        plotOptions: {
+            column: {
+                depth: 25,
+                color:'#1A4D11'
+            }
+        },
+        xAxis: {
+            categories: Highcharts.getOptions().lang.shortMonths
+        },
+        yAxis: {
+            title: {
+                text: null
+            }
+        },
+        series: [{
+            name: '商品销售',
+            data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
+        }]
+    });
+
+    var chart = Highcharts.chart('usercount', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: '2014年某网站不同浏览器访问量占比'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '浏览器占比',
+            data: [
+                ['Firefox',   45.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    8.5],
+                ['Opera',     6.2],
+                ['Others',   0.7]
+            ]
+        }]
+    });
+
+    /*
+ * 获取当前时间
+ */
+    function getNow() {
+        var now = new Date();
+        return {
+            hours: now.getHours() + now.getMinutes() / 60,
+            minutes: now.getMinutes() * 12 / 60 + now.getSeconds() * 12 / 3600,
+            seconds: now.getSeconds() * 12 / 60
+        };
+    }
+    /**
+     * Pad numbers
+     */
+    function pad(number, length) {
+        // Create an array of the remaining length + 1 and join it with 0's
+        return new Array((length || 2) + 1 - String(number).length).join(0) + number;
+    }
+    var now = getNow();
+    // Create the chart
+    var chart = Highcharts.chart('time',{
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            height: 400
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Highcharts时钟'
+        },
+        pane: {
+            background: [{
+                // default background
+            }, {
+                // reflex for supported browsers
+                backgroundColor: Highcharts.svg ? {
+                    radialGradient: {
+                        cx: 0.5,
+                        cy: -0.4,
+                        r: 1.9
+                    },
+                    stops: [
+                        [0.5, 'rgba(255, 255, 255, 0.2)'],
+                        [0.5, 'rgba(200, 200, 200, 0.2)']
+                    ]
+                } : null
+            }]
+        },
+        yAxis: {
+            labels: {
+                distance: -20
+            },
+            min: 0,
+            max: 12,
+            lineWidth: 0,
+            showFirstLabel: false,
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 5,
+            minorTickPosition: 'inside',
+            minorGridLineWidth: 0,
+            minorTickColor: '#666',
+            tickInterval: 1,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            title: {
+                text: 'Powered by<br/>Highcharts',
+                style: {
+                    color: '#BBB',
+                    fontWeight: 'normal',
+                    fontSize: '8px',
+                    lineHeight: '10px'
+                },
+                y: 10
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return this.series.chart.tooltipText;
+            }
+        },
+        series: [{
+            data: [{
+                id: 'hour',
+                y: now.hours,
+                dial: {
+                    radius: '60%',
+                    baseWidth: 4,
+                    baseLength: '95%',
+                    rearLength: 0
+                }
+            }, {
+                id: 'minute',
+                y: now.minutes,
+                dial: {
+                    baseLength: '95%',
+                    rearLength: 0
+                }
+            }, {
+                id: 'second',
+                y: now.seconds,
+                dial: {
+                    radius: '100%',
+                    baseWidth: 1,
+                    rearLength: '20%'
+                }
+            }],
+            animation: false,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    }, function (chart) {
+        setInterval(function () {
+            now = getNow();
+            var hour = chart.get('hour'),
+                minute = chart.get('minute'),
+                second = chart.get('second'),
+                // run animation unless we're wrapping around from 59 to 0
+                animation = now.seconds === 0 ?
+                    false :
+                    {
+                        easing: 'easeOutElastic'
+                    };
+            // Cache the tooltip text
+            chart.tooltipText =
+                pad(Math.floor(now.hours), 2) + ':' +
+                pad(Math.floor(now.minutes * 5), 2) + ':' +
+                pad(now.seconds * 5, 2);
+            hour.update(now.hours, true, animation);
+            minute.update(now.minutes, true, animation);
+            second.update(now.seconds, true, animation);
+        }, 1000);
+    });
+    // Extend jQuery with some easing (copied from jQuery UI)
+    $.extend($.easing, {
+        easeOutElastic: function (x, t, b, c, d) {
+            var s=1.70158;var p=0;var a=c;
+            if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+            if (a < Math.abs(c)) { a=c; var s=p/4; }
+            else var s = p/(2*Math.PI) * Math.asin (c/a);
+            return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+        }
+    });
 </script>
 </body>
 </html>

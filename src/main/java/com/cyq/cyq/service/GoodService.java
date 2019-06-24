@@ -2,7 +2,8 @@ package com.cyq.cyq.service;
 
 
 import com.cyq.cyq.model.Good;
-import com.cyq.cyq.model.LayUITree;
+
+import java.util.List;
 
 public interface GoodService {
 
@@ -16,5 +17,7 @@ public interface GoodService {
 
     public Good selectGoodByName(String goodname);
 
-    LayUITree getLayUITree() throws Exception;
+    List<Good> selectAllGood();
+
+    int updateGoodNumberByGoodId(String goodid);
 }

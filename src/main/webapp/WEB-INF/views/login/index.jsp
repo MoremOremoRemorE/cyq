@@ -71,7 +71,7 @@
         <!-- 侧边菜单 -->
         <div class="layui-side layui-side-menu">
             <div class="layui-side-scroll">
-                <div class="layui-logo" lay-href="${cp}/front/main">
+                <div class="layui-logo" >
                     <span>系统菜单</span>
                 </div>
 
@@ -83,7 +83,7 @@
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="console" class="layui-this">
-                                <a lay-href="${cp}/front/main">欢迎页面</a>
+                                <a lay-href="${cp}/front/main">数据统计分析</a>
                             </dd>
                            <%-- <dd data-name="console">
                                 <a lay-href="home/homepage1.html">主页一</a>
@@ -273,6 +273,16 @@
                             </dd>--%>
                         </dl>
                     </li>
+                    <li data-name="get" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="商品销售管理" lay-direction="2">
+                            <i class="layui-icon layui-icon-auz"></i>
+                            <cite>商品销售管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a lay-href="${cp}/good/goodsell">商品销售</a></dd>
+
+                        </dl>
+                    </li>
                     <li data-name="template" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="商品管理" lay-direction="2">
                             <i class="layui-icon layui-icon-template"></i>
@@ -292,6 +302,18 @@
                              <dd><a lay-href="http://www.baidu.com/">百度一下</a></dd>
                              <dd><a lay-href="http://www.layui.com/">layui官网</a></dd>
                              <dd><a lay-href="http://www.layui.com/admin/">layuiAdmin官网</a></dd>--%>
+                        </dl>
+                    </li>
+                    <li data-name="app" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="商品交易记录" lay-direction="2">
+                            <i class="layui-icon layui-icon-app"></i>
+                            <cite>商品交易管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd data-name="list"><a lay-href="${cp}/good/gooddeallist">商品交易记录</a></dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd data-name="list"><a lay-href="${cp}/good/coustomComplaint">客户投诉处理</a></dd>
                         </dl>
                     </li>
                     <%--<li data-name="app" class="layui-nav-item">
@@ -360,6 +382,15 @@
                             </dd>
                         </dl>
                     </li>--%>
+                    <li data-name="app" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="客户信息管理" lay-direction="2">
+                            <i class="layui-icon layui-icon-app"></i>
+                            <cite>客户信息管理</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd data-name="list"><a lay-href="${cp}/custom/customlist">客户信息</a></dd>
+                        </dl>
+                    </li>
                     <li data-name="set" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="设置" lay-direction="2">
                             <i class="layui-icon layui-icon-set"></i>
@@ -382,12 +413,7 @@
                             </dd>
                         </dl>
                     </li>
-                    <%--<li data-name="get" class="layui-nav-item">
-                        <a href="javascript:;" lay-href="http://www.layui.com/admin/#get" lay-tips="授权" lay-direction="2">
-                            <i class="layui-icon layui-icon-auz"></i>
-                            <cite>授权</cite>
-                        </a>
-                    </li>--%>
+
                 </ul>
             </div>
         </div>

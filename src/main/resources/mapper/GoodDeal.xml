@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyq.cyq.mapper.GoodDealMapper">
+    <insert id="insertGoodDealInfo" parameterType="com.cyq.cyq.model.GoodDeal">
+        insert into gooddeal(goodid,address,username,userid,phone,note,content,date,filepath,gohomeflag,fenqiflag,fapiaoflag,operatorname,operatorid)values
+        (#{goodid},#{address},#{username},#{userid},#{phone},#{note},#{content},#{date},#{filepath},#{gohomeflag},#{fenqiflag},#{fapiaoflag},#{operatorname},#{operatorid})
+    </insert>
+
+    <select id="getGoodDealList" resultType="com.cyq.cyq.model.GoodDeal">
+        SELECT a.username,b.goodname,b.price,a.address,a.date FROM gooddeal a left join good b on a.goodid=b.goodid
+        where 1=1
+        <if test="username != null and username !='' ">
+            and a.username like concat('%',#{username},'%')
+        </if>
+    </select>
+</mapper>

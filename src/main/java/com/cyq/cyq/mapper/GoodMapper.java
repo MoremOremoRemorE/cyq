@@ -1,6 +1,7 @@
 package com.cyq.cyq.mapper;
 
 import com.cyq.cyq.model.Good;
+import com.cyq.cyq.model.GoodDeal;
 import com.cyq.cyq.model.GoodSort;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +20,10 @@ public interface GoodMapper {
     public  void editGood(Good good);
 
     public Good selectGoodByName(String goodname);
+
+    public List<GoodDeal> getGoodDeal();
+
+    List<Good> selectAllGood();
+
+    int updateGoodNumberByGoodId(String goodid);
 }

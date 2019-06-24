@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyq.cyq.mapper.CustomerMapper">
+
+    <select id="selectCustomerByName" resultType="com.cyq.cyq.model.CustomerInfo">
+        select * from customerinfo where username=#{username}
+    </select>
+    <insert id="insertCustomerInfo" parameterType="com.cyq.cyq.model.CustomerInfo">
+        insert into customerinfo(username,phone)values(#{username},#{phone})
+    </insert>
+
+    <select id="selectMaxUserId" parameterType="java.lang.String"  resultType="int">
+        select max(userid) from customerinfo
+    </select>
+
+    <select id="getCustomer" resultType="com.cyq.cyq.model.CustomerInfo">
+        select * from customerinfo
+    </select>
+
+    <delete id="deleteCustomer" parameterType="String">
+        delete from customerinfo where userid =#{id}
+    </delete>
+
+    <update id="updateCustomerById" parameterType="com.cyq.cyq.model.CustomerInfo">
+        update customerinfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="phone!=null">phone=#{phone},</if>
+        </trim>
+        where userid=#{userid}
+    </update>
+
+</mapper>
