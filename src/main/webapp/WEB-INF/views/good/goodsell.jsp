@@ -22,7 +22,7 @@
     <legend>商品销售</legend>
 </fieldset>
 
-<form class="layui-form" action="${cp}/good/addgoodsell" method="get">
+<form class="layui-form" action="${cp}/good/addgoodsell" method="get" enctype="multipart/form-data">
     <%--<div class="layui-form-item">
         <label class="layui-form-label">客户姓名</label>
         <div class="layui-input-block">
@@ -72,12 +72,13 @@
         </div>--%>
     </div>
 
-   <%-- <div class="layui-form-item">
-        <label class="layui-form-label">验证身份证</label>
+   <div class="layui-form-item">
+        <label class="layui-form-label">上传文件</label>
         <div class="layui-input-block">
-            <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+            <input type="file" name="uploadfile" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input" style="width:400px;">
         </div>
-    </div>--%>
+    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">用户地址</label>
         <div class="layui-input-inline">

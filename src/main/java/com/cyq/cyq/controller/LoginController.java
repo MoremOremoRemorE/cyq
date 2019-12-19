@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value ="/front" )
@@ -132,6 +129,9 @@ public class LoginController {
                 String time = sdf.format(date);
                 user.setTime(time);
                 user.setRoleid("2");//默认为普通员工
+                String userid=UUID.randomUUID().toString().replace("-","");
+                user.setUserid(userid);
+                user.setSex("男");
                 userService.addUser(user);
                /* String userid = userService.selectUserId();
                 UserRole userrole = new UserRole();

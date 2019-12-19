@@ -6,7 +6,8 @@
         select * from customerinfo where username=#{username}
     </select>
     <insert id="insertCustomerInfo" parameterType="com.cyq.cyq.model.CustomerInfo">
-        insert into customerinfo(username,phone)values(#{username},#{phone})
+        insert into customerinfo(customerid,customerName,sex,birthday,phoneNum,region,location,email,projectType,paperStatus)values
+                                (#{customerid},#{customerName},#{sex},#{birthday},#{phoneNum},#{region},#{location},#{email},#{projectType},#{paperStatus})
     </insert>
 
     <select id="selectMaxUserId" parameterType="java.lang.String"  resultType="int">

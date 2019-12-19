@@ -318,7 +318,7 @@ public class GoodController {
             goodDeal.setGoodid(request.getParameter("goodmsg"));
             goodDeal.setAddress(request.getParameter("address"));
             goodDeal.setUsername(request.getParameter("username"));
-            goodDeal.setUserid(customerInfo.getUserid());
+      //      goodDeal.setUserid(customerInfo.getUserid());
             goodDeal.setPhone(request.getParameter("phone"));
             goodDeal.setNote(request.getParameter("note"));
             goodDeal.setDate(request.getParameter("date"));
@@ -337,8 +337,8 @@ public class GoodController {
             }
         }else {
             CustomerInfo customerInfox = new CustomerInfo();
-            customerInfox.setUsername(request.getParameter("username"));
-            customerInfox.setPhone(request.getParameter("phone"));
+       //     customerInfox.setUsername(request.getParameter("username"));
+        //    customerInfox.setPhone(request.getParameter("phone"));
             int countx = customerService.insertCustomerInfo(customerInfox);
             String  userid="";
             if(countx >0){

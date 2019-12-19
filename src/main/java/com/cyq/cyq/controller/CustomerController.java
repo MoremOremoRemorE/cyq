@@ -4,6 +4,7 @@ import com.cyq.cyq.model.CustomerInfo;
 import com.cyq.cyq.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,10 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value ="/custom" )
@@ -66,10 +64,10 @@ public class CustomerController {
         Map<String,Object> map = new HashMap<String,Object>();
         CustomerInfo customerInfo1 = new CustomerInfo();
         try{
-            String  userid = customerInfo.getUserid();
-            String phone = customerInfo.getPhone();
-            customerInfo1.setPhone(phone);
-            customerInfo1.setUserid(userid);
+       //     String  userid = customerInfo.getUserid();
+       //     String phone = customerInfo.getPhone();
+        //    customerInfo1.setPhone(phone);
+       //     customerInfo1.setUserid(userid);
             int count = customerService.updateCustomerById(customerInfo1);
 
             map.put("data","success");
@@ -89,5 +87,22 @@ public class CustomerController {
         mav.addObject("phone",phone);
         mav.addObject("username",username);
         return mav;
+    }
+
+    //对接小程序
+    @RequestMapping(value = "/insertcustomer", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> insertcustomer(@RequestBody CustomerInfo customerInfo, HttpServletRequest request) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        String customerid= UUID.randomUUID().toString().replace("-","");
+        customerInfo.setCustomerid(customerid);
+        int count = customerService.insertCustomerInfo(customerInfo);
+        if(count>0){
+            map.put("msg","success");
+        }else{
+            map.put("msg","fail");
+        }
+        return map;
+
     }
 }

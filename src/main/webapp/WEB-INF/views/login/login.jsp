@@ -68,7 +68,7 @@
     <div class='success'>
     </div>
     <div class='disclaimer'>
-        <p>这里本来是两个迎宾小姐姐的</p>
+        <p>欢迎使用</p>
     </div>
     <div class="waifu">
         <div class="waifu-tips"></div>

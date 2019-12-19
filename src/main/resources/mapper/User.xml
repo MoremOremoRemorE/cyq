@@ -12,7 +12,7 @@
         delete from userinfo where userid =#{id}
     </delete>
     <insert id="addUser" parameterType="com.cyq.cyq.model.User">
-        insert into userinfo(username,password,sex,time,roleid,email)values(#{username},#{password},#{sex},#{time},#{roleid},#{email})
+        insert into userinfo(userid,username,password,sex,time,roleid,email)values(#{userid},#{username},#{password},#{sex},#{time},#{roleid},#{email})
     </insert>
    <!-- <insert id="addUserRole" parameterType="com.cyq.cyq.model.UserRole">
         insert into userrole(userid,roleid)values(#{userid},#{roleid})

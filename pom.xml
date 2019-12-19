@@ -93,11 +93,11 @@
             <optional>true</optional>
         </dependency>
         <!-- 分页插件 -->
-       <!--  <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>4.1.6</version>
-        </dependency>-->
+        <!--  <dependency>
+             <groupId>com.github.pagehelper</groupId>
+             <artifactId>pagehelper-spring-boot-starter</artifactId>
+             <version>4.1.6</version>
+         </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -128,6 +128,34 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <!-- shiro-redis -->
+        <dependency>
+            <groupId>org.crazycake</groupId>
+            <artifactId>shiro-redis</artifactId>
+            <version>2.4.2.1-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
@@ -170,6 +198,7 @@
             <systemPath>${project.basedir}/src/main/resources/lib/mail.jar</systemPath>
         </dependency>
 
+
     </dependencies>
 
     <build>
@@ -194,15 +223,15 @@
 
             <!-- mybatis generator 自动生成代码插件 -->
             <plugin>
-              <groupId>org.mybatis.generator</groupId>
-               <artifactId>mybatis-generator-maven-plugin</artifactId>
-               <version>1.3.2</version>
-                 <configuration>
-                     <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
                     <overwrite>true</overwrite>
                     <verbose>true</verbose>
-                 </configuration>
-             </plugin>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
