@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
+        <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cyq</groupId>
@@ -92,17 +92,19 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- 分页插件 -->
-        <!--  <dependency>
-             <groupId>com.github.pagehelper</groupId>
-             <artifactId>pagehelper-spring-boot-starter</artifactId>
-             <version>4.1.6</version>
-         </dependency>-->
+       <!--  分页插件-->
+<!--          <dependency>-->
+<!--             <groupId>com.github.pagehelper</groupId>-->
+<!--             <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--             <version>4.1.6</version>-->
+<!--         </dependency>-->
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -197,8 +199,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/lib/mail.jar</systemPath>
         </dependency>
-
-
     </dependencies>
 
     <build>
