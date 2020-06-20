@@ -283,6 +283,16 @@
 
                         </dl>
                     </li>
+                    <li data-name="get" class="layui-nav-item">
+                        <a href="javascript:;" lay-tips="下载PDF" lay-direction="2">
+                            <i class="layui-icon layui-icon-auz"></i>
+                            <cite>下载PDF</cite>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a lay-href="${cp}/pdf/downLoad">PDF</a></dd>
+
+                        </dl>
+                    </li>
                     <li data-name="template" class="layui-nav-item">
                         <a href="javascript:;" lay-tips="商品管理" lay-direction="2">
                             <i class="layui-icon layui-icon-template"></i>

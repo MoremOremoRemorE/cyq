@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
+/**
+ * @author chaoqun
+ */
 @Controller
 @RequestMapping(value ="/custom" )
 public class CustomerController {
@@ -89,7 +92,12 @@ public class CustomerController {
         return mav;
     }
 
-    //对接小程序
+    /**
+     *
+     * @param customerInfo
+     * @param request
+     * @return map
+     */
     @RequestMapping(value = "/insertcustomer", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> insertcustomer(@RequestBody CustomerInfo customerInfo, HttpServletRequest request) {

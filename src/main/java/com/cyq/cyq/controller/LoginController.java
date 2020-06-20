@@ -1,11 +1,11 @@
 package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.User;
-import com.cyq.cyq.service.GoodService;
 import com.cyq.cyq.service.UserService;
 import com.cyq.cyq.service.SendEmailService;
 import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +30,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("login/login");
+        ModelAndView mav = new ModelAndView("login/login1");
         return mav;
     }
 
@@ -155,5 +155,17 @@ public class LoginController {
     public ModelAndView main(){
         ModelAndView mav= new ModelAndView("main/main");
         return mav;
+    }
+
+    @RequestMapping("/getUser")
+    @Cacheable(value="user-key")
+    public User getUser() {
+        User user=new User();
+        user.setUserid("0");
+        user.setUsername("007");
+        user.setEmail("1334538961@qq.com");
+        user.setPhone("13558333806");
+        System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
+        return user;
     }
 }
