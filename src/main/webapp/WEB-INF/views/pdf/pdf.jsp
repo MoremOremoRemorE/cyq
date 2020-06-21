@@ -29,7 +29,6 @@
 <script type="text/javascript" src="../../../static/login/js/jquery-ui.min.js"></script>
 <script src="../../../static/layuiadmin/layui/layui.js"></script>
 <script>
-
     layui.config({
         base: '../../../static/layuiadmin/' //静态资源所在路径
     }).extend({
@@ -45,18 +44,18 @@
             data:{'name':name},
             async: false,
             success:function(data){
+                console.log(data);
                 if(data.msg =='success'){
-                    alert("删除成功",{icon:1});
-                    location.href = '../front/login';
-                }
-                else{
-                    layer.msg("删除失败",{icon:5});
+                    layer.msg("成功",{icon:1});
+                } else{
+                    layer.msg("失败",{icon:5});
                 }
             }
         });
     }
     function realdownload() {
-        window.location.href="/pdf/downPdf";
+        var name = $("#username").val();
+        window.location.href="/pdf/downPdf?name="+name;
     }
 
 </script>

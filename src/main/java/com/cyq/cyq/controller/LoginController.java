@@ -87,7 +87,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ModelAndView mav = new ModelAndView("login/index");
+        ModelAndView mav = new ModelAndView("login/indexpdf");
         mav.addObject("msg",msg);
         mav.addObject("userinfolist", userinfolist);
         mav.addObject("username",username);
@@ -145,15 +145,12 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //    System.out.println(username);
-        //   System.out.println(password);
-        //   System.out.println(map);
         return map;
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public ModelAndView main(){
-        ModelAndView mav= new ModelAndView("main/main");
+        ModelAndView mav= new ModelAndView("main/main1");
         return mav;
     }
 

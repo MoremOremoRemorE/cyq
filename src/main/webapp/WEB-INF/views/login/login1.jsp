@@ -29,7 +29,7 @@
     <div class='login_title'>
         <span>用户登录</span>
     </div>
-    <div class='login_fields'>
+    <div class='login_fields' style="margin-left: 896px;margin-top: 315px;">
         <div class='login_fields__user'>
             <div class='icon'>
                 <img alt="" src='../../../static/login/img/user_icon_copy.png'>

@@ -11,10 +11,10 @@ import java.io.IOException;
 public class MyFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println(servletRequest.getParameter("name"));
+//        System.out.println(servletRequest.getParameter("name"));
         HttpServletRequest hrequest = (HttpServletRequest) servletRequest;
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper((HttpServletResponse) servletResponse);
-        System.out.println(JSON.toJSONString(hrequest.getRequestURI()));
+//        System.out.println(JSON.toJSONString(hrequest.getRequestURI()));
         if (hrequest.getRequestURI().contains("/index")) {
             if (hrequest.getSession(false)!=null&&hrequest.getSession(false).getAttribute("username")!=null) {
                 filterChain.doFilter(servletRequest, servletResponse);
