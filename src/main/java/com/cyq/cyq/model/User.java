@@ -2,8 +2,10 @@ package com.cyq.cyq.model;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class User {
+public class User implements Serializable {
     private String userid;
     private String username;
     private String sex;
@@ -16,6 +18,7 @@ public class User {
     private String phone;
     private String note;
     private String email;
+
 
 
     public String getEmail() {

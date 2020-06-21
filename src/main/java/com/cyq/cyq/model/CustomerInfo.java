@@ -10,12 +10,23 @@ public class CustomerInfo {
     private String sex;
     private String birthday;
     private String phoneNum;
-    private String smsNum;     //验证码
-    private String region;      //地区
-    private String location;   //详细住址
+    private String smsNum;
+    /**
+     * 验证码
+     */
+    private String region;
+    /**
+     * 地区
+     */
+    private String location;
+    /**
+     * 电子邮件
+     */
     private String email;
-    private String projectType;  //检测项目
-    private int paperStatus;    //是否需要打印报告
+    private String projectType;
+    //检测项目
+    private int paperStatus;
+    //是否需要打印报告
 
     public int getId() {
         return id;

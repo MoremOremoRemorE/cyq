@@ -25,7 +25,7 @@
     <link href="../../../js/live2d/assets/waifu.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class='login'>
+<img class='login'>
     <div class='login_title'>
         <span>用户登录</span>
     </div>
@@ -67,8 +67,9 @@
     </div>
     <div class='success'>
     </div>
-    <div class='disclaimer'>
-        <p>欢迎使用</p>
+    <img class='disclaimer'>
+        <p>备案号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.miit.gov.cn/" style="color: red">苏ICP备19045704号</a></p>
+
     </div>
     <div class="waifu">
         <div class="waifu-tips"></div>
