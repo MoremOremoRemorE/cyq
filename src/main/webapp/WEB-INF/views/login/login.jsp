@@ -16,7 +16,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <title>顺路帮登录</title>
+    <title>登录</title>
     <link href="../../../static/login/css/default.css" rel="stylesheet" type="text/css" />
     <!--必要样式-->
     <link href="../../../static/login/css/styles.css" rel="stylesheet" type="text/css" />

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class pdfUser {
     private int id;
     private String name;
+    private int countM;
 
 
     public int getId() {
@@ -22,5 +23,13 @@ public class pdfUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCountM() {
+        return countM;
+    }
+
+    public void setCountM(int countM) {
+        this.countM = countM;
     }
 }
