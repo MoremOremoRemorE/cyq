@@ -6,4 +6,6 @@ import com.cyq.cyq.model.pdfUser;
 public interface pdfUserService {
 
     int insertpdf(pdfUser pdfUser);
+
+    int selectCount();
 }

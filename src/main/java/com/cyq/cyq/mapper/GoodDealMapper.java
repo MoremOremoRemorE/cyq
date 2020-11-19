@@ -10,5 +10,5 @@ import java.util.List;
 public interface GoodDealMapper {
     int insertGoodDealInfo(GoodDeal goodDeal);
 
-    List<GoodDeal> getGoodDealList( @Param("username") String username);
+    List<GoodDeal> getGoodDealList(@Param("username") String username);
 }

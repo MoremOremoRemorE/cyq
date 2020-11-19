@@ -1,17 +1,13 @@
 package com.cyq.cyq.utils;
 
+import com.sun.mail.util.MailSSLSocketFactory;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import com.sun.mail.util.MailSSLSocketFactory;
 
 public class SendEmail {
     public static void senfEmail(String username, String email, String keyword) throws GeneralSecurityException {

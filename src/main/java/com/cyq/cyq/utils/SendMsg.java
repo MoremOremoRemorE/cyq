@@ -1,6 +1,5 @@
 package com.cyq.cyq.utils;
 
-import java.io.UnsupportedEncodingException;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;

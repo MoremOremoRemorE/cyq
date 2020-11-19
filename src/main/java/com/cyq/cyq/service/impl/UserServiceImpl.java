@@ -19,6 +19,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getNormalUser() throws Exception {
         return userMapper.getNormalUser();
     }
+
+    @Override
+    public int insertUserDaKa(User user) {
+        return userMapper.insertUserDaKa(user);
+    }
+
+    @Override
+    public List<User> getUserDaKa() {
+        return userMapper.getUserDaKa();
+    }
+
     //根据id删除用户
     @Override
     public void deleteUser(String id) throws Exception {

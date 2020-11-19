@@ -4,7 +4,6 @@ import com.cyq.cyq.model.User;
 import com.cyq.cyq.service.SendEmailService;
 import com.cyq.cyq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,10 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping(value ="/user" )
@@ -201,4 +198,62 @@ public class UserController {
         }
         return map;
     }
+    @RequestMapping(value = "/userdaka", method = RequestMethod.GET)
+    public ModelAndView userdaka(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("user/userdaka");
+        return mav;
+    }
+    @RequestMapping(value = "/userup",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> userup(HttpServletRequest request, HttpServletResponse response,String flag) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = df.format(new Date());
+            User user = new User();
+            HttpSession session = request.getSession(false);
+            String username = (String)session.getAttribute("username");
+            user.setUsername(username);
+            user.setDate(date);
+            user.setFlag(flag);
+            int count = userService.insertUserDaKa(user);
+            if(count>0){
+                map.put("msg","success");
+            }else{
+                map.put("msg","fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+    @RequestMapping(value = "/lookuserdaka", method = RequestMethod.GET)
+    public ModelAndView lookuserdaka(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("user/alluserdaka");
+        return mav;
+    }
+    @RequestMapping(value = "/getalluserdaka",method =RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getalluserdaka (HttpServletRequest request,HttpServletResponse response){
+        Map<String,Object> resultmap = new HashMap<String,Object>();
+        List <User> userdakalist = new ArrayList<User>();
+        try {
+            userdakalist = userService.getUserDaKa();
+            for(User user:userdakalist){
+                if(user.getFlag().equals("up")){
+                    user.setFlag("上班打卡");
+                }else{
+                    user.setFlag("下班打卡");
+                }
+            }
+            resultmap.put("data",userdakalist);
+            resultmap.put("code","1000");
+            resultmap.put("msg","");
+            resultmap.put("code","0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultmap;
+    }
+
 }

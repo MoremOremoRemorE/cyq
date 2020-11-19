@@ -1,8 +1,8 @@
 package com.cyq.cyq.controller;
 
 import com.cyq.cyq.model.User;
-import com.cyq.cyq.service.UserService;
 import com.cyq.cyq.service.SendEmailService;
+import com.cyq.cyq.service.UserService;
 import com.cyq.cyq.system.dto.AskResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -87,7 +87,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ModelAndView mav = new ModelAndView("login/indexpdf");
+        ModelAndView mav = new ModelAndView("login/index");
         mav.addObject("msg",msg);
         mav.addObject("userinfolist", userinfolist);
         mav.addObject("username",username);
@@ -150,7 +150,7 @@ public class LoginController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public ModelAndView main(){
-        ModelAndView mav= new ModelAndView("main/main1");
+        ModelAndView mav= new ModelAndView("main/main");
         return mav;
     }
 

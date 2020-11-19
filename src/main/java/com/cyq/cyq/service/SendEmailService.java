@@ -1,7 +1,5 @@
 package com.cyq.cyq.service;
 
-import org.springframework.stereotype.Service;
-
 import java.security.GeneralSecurityException;
 
 public interface SendEmailService {

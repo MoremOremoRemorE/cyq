@@ -1,36 +1,26 @@
 package com.cyq.cyq.controller;
 
 import com.aspose.pdf.*;
-import com.cyq.cyq.model.User;
 import com.cyq.cyq.model.pdfUser;
-import com.cyq.cyq.service.SendEmailService;
-import com.cyq.cyq.service.UserService;
-import com.cyq.cyq.service.pdfUserService;
-import com.cyq.cyq.system.dto.AskResult;
-import com.cyq.cyq.utils.main;
-import org.springframework.aop.scope.ScopedProxyUtils;
+import com.cyq.cyq.utils.pdf;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value ="/pdf" )
 public class PdfController {
 
     @Autowired
-    private pdfUserService pdfUserService;
+    private com.cyq.cyq.service.pdfUserService pdfUserService;
 
     @RequestMapping("/downLoad")
     public ModelAndView downLoad() {
@@ -51,7 +41,7 @@ public class PdfController {
 
     private void realDownLoad(String name,HttpServletRequest request,HttpServletResponse response) throws FileNotFoundException, UnsupportedEncodingException {
         //获取服务器文件
-        String path = "G:\\"+name+".pdf";
+        String path = "C:\\pdf\\"+name+".pdf";
         File file = new File(path);
 
         InputStream ins = new FileInputStream(file);
@@ -77,14 +67,14 @@ public class PdfController {
 
     private Map<String,Object> downLoadPDF(String name) {
         Map<String,Object> map = new HashMap<>();
-        String srcPath = "G:\\test.pdf"; // 源文件路径
-        String outName = "G:\\"+name+".pdf";
+        String srcPath = "C:\\pdf\\test.pdf"; // 源文件路径
+        String outName = "C:\\pdf\\"+name+".pdf";
         String targetPath = outName; // 输入文件路径
 
-        String srcText = "金超群"; // 需要替换的文本
+        String srcText = "某某某"; // 需要替换的文本
         String targetText = name;
 
-        InputStream license = com.cyq.cyq.utils.main.class.getClassLoader().getResourceAsStream("\\license.xml");
+        InputStream license = pdf.class.getClassLoader().getResourceAsStream("license.xml");
         try {
             new License().setLicense(license);
             Document pdfDoc = new Document(srcPath);
@@ -115,4 +105,59 @@ public class PdfController {
         }
         return map;
     }
-}
+    @RequestMapping("/count")
+    @ResponseBody
+    public int count(HttpServletRequest request,HttpServletResponse response)  {
+        int count = pdfUserService.selectCount();
+        return count;
+    }
+    @RequestMapping("/morePDF")
+    @ResponseBody
+    private Map<String,Object> morePDF(String userinfolist) {
+        Map<String,Object> map = new HashMap<>();
+        String namexx =userinfolist;
+        String[] names = namexx.split(";");
+            for(String name:names){
+                String srcPath = "C:\\pdf\\test.pdf"; // 源文件路径
+                String outName = "C:\\pdfNew\\"+name+".pdf";
+                String targetPath = outName; // 输入文件路径
+
+                String srcText = "某某某"; // 需要替换的文本
+                String targetText = name;
+
+                InputStream license = pdf.class.getClassLoader().getResourceAsStream("license.xml");
+                try {
+                    new License().setLicense(license);
+                    Document pdfDoc = new Document(srcPath);
+                    TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber(srcText);
+                    PageCollection pages = pdfDoc.getPages();
+                    System.out.println("文档总页码数：" + pages.size());
+                    pages.accept(textFragmentAbsorber);
+                    int i = 0;
+                    for (TextFragment textFragment : (Iterable<TextFragment>)textFragmentAbsorber.getTextFragments()) {
+                        textFragment.setText(targetText);
+                        System.out.println(++i);
+                    }
+                    pdfDoc.save(targetPath);
+                    System.out.println("总共替换" + i + "处");
+                    System.out.println("OK");
+                    //数据库写数据
+                    pdfUser pdfUser = new pdfUser();
+                    pdfUser.setName(name);
+                    pdfUser.setCountM(0);
+                    int count = pdfUserService.insertpdf(pdfUser);
+                    if(count>0){
+                        System.out.println(name+"------success");
+                        map.put("msg","success");
+                    }else {
+                        System.out.println(name+"------fail");
+                        map.put("msg","fail");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return map;
+        }
+    }
+

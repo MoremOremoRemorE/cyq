@@ -2,7 +2,6 @@ package com.cyq.cyq.service;
 
 import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
-import com.cyq.cyq.model.User;
 
 import java.util.List;
 

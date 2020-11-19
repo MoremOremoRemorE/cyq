@@ -5,4 +5,7 @@
     <insert id="insertpdf" parameterType="com.cyq.cyq.model.pdfUser">
         insert into pdf(name,countM)values(#{name},#{countM})
     </insert>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(DISTINCT id) from pdf;
+    </select>
 </mapper>

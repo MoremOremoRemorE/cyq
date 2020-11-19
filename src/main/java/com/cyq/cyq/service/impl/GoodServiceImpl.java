@@ -7,7 +7,6 @@ import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
 import com.cyq.cyq.model.LayUITree;
 import com.cyq.cyq.service.GoodService;
-import com.cyq.cyq.service.GoodSortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

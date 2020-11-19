@@ -36,11 +36,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.5</version>
+            <version>8.0.19</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -157,20 +156,6 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itextpdf</artifactId>
-            <version>5.5.13</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.itextpdf/itext-asian -->
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itext-asian</artifactId>
-            <version>5.2.0</version>
-        </dependency>
-
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
@@ -207,49 +192,44 @@
         </dependency>
 
         <dependency>
-            <groupId>activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/activation.jar</systemPath>
-        </dependency>
+             <groupId>activation</groupId>
+             <artifactId>activation</artifactId>
+             <version>0.0.1</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/src/main/resources/lib/activation.jar</systemPath>
+         </dependency>
 
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>0.1.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/commons-codec-1.4.jar</systemPath>
-        </dependency>
+         <dependency>
+             <groupId>commons-codec</groupId>
+             <artifactId>commons-codec</artifactId>
+             <version>0.1.4</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/src/main/resources/lib/commons-codec-1.4.jar</systemPath>
+         </dependency>
 
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>0.3.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/commons-httpclient-3.1.jar</systemPath>
-        </dependency>
+         <dependency>
+             <groupId>commons-httpclient</groupId>
+             <artifactId>commons-httpclient</artifactId>
+             <version>0.3.1</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/src/main/resources/lib/commons-httpclient-3.1.jar</systemPath>
+         </dependency>
 
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/commons-logging-1.1.1.jar</systemPath>
-        </dependency>
+         <dependency>
+             <groupId>commons-logging</groupId>
+             <artifactId>commons-logging</artifactId>
+             <version>1.1.1</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/src/main/resources/lib/commons-logging-1.1.1.jar</systemPath>
+         </dependency>
 
-        <dependency>
-            <groupId>mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/mail.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.cyq</groupId>
-            <artifactId>cyq</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+         <dependency>
+             <groupId>mail</groupId>
+             <artifactId>mail</artifactId>
+             <version>0.0.1</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/src/main/resources/lib/mail.jar</systemPath>
+         </dependency>
 
 
     </dependencies>
@@ -299,6 +279,13 @@
                     <include>**/**</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>src/main/resources/lib</directory>
+                <targetPath>/BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
         </resources>
         <testResources>
             <testResource>
@@ -307,6 +294,5 @@
             </testResource>
         </testResources>
     </build>
-
 </project>
 

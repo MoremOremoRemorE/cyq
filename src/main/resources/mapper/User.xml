@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyq.cyq.mapper.UserMapper">
     <select id="getUser" resultType="com.cyq.cyq.model.User">
-        SELECT a.*,b.rolename FROM userinfo a ,role b WHERE a.roleid=b.roleid;
+        select * from userinfo;
     </select>
     <select id="getNormalUser" resultType="com.cyq.cyq.model.User">
-        SELECT a.*,b.rolename FROM userinfo a ,role b WHERE a.roleid=b.roleid and a.roleid=2;
+        select * from userinfo;
     </select>
 
     <delete id="deleteUser" parameterType="String">
@@ -62,4 +62,10 @@
         </set>
         where userid=#{userid}
     </update>
+    <insert id="insertUserDaKa" parameterType="com.cyq.cyq.model.User">
+        insert into userdaka(username,flag,date)values(#{username},#{flag},#{date})
+    </insert>
+    <select id="getUserDaKa" resultType="com.cyq.cyq.model.User">
+        select * from userdaka;
+    </select>
 </mapper>

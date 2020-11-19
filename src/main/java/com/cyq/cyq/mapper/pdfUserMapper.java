@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface pdfUserMapper {
 
     int insertpdf(pdfUser pdfUser);
+
+    int selectCount();
 }

@@ -20,12 +20,17 @@
     <link rel="stylesheet" href="../../../static/loginNew/css/verifyCode.css" />
     <link rel="stylesheet" href="../../../static/loginNew/css/tooltips.css" />
     <link rel="stylesheet" href="../../../static/loginNew/css/spop.min.css" />
+    <link href="../../../static/login/layui/css/layui.css" rel="stylesheet" type="text/css" />
 
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="../../../static/loginNew/js/snow.js"></script>
     <script src="../../../static/loginNew/js/jquery.pure.tooltips.js"></script>
     <script src="../../../static/loginNew/js/verifyCode.js"></script>
     <script src="../../../static/loginNew/js/spop.min.js"></script>
+
+    <script type="text/javascript" src="../../../static/login/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src='../../../static/login/js/stopExecutionOnTimeout.js?t=1'></script>
+    <script src="../../../static/login/layui/layui.js" type="text/javascript"></script>
     <script>
         (function() {
             // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
@@ -183,6 +188,8 @@
 
             //登录
             //调用后台登录验证的方法
+            layui.use('layer', function () {
+                var loading = layer.msg('正在登录', {icon: 16, shade: 0.3, time: -1});
             var userinfo={};
             userinfo.username=username;
             userinfo.code=verifycode;
@@ -219,6 +226,7 @@
                     alert("用户验证异常,请联系维护人员!");
                 }
             });
+            })
             return false;
         }
 

@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 @Component
 public class User implements Serializable {
+    private int id;
     private String userid;
     private String username;
     private String sex;
@@ -18,8 +19,17 @@ public class User implements Serializable {
     private String phone;
     private String note;
     private String email;
+    private String flag;
+    private String date;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -115,5 +125,21 @@ public class User implements Serializable {
 
     public void setNewpassword(String newpassword) {
         this.newpassword = newpassword;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

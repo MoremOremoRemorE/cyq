@@ -42,4 +42,8 @@ public interface UserMapper {
     public  User getUserById(String id);
 
     public List<User> getNormalUser() throws Exception;
+
+    int insertUserDaKa(User user);
+
+    List<User> getUserDaKa();
 }

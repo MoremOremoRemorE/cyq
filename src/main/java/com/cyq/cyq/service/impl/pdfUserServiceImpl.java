@@ -16,4 +16,9 @@ public class pdfUserServiceImpl implements pdfUserService {
     public int insertpdf(pdfUser pdfUser) {
         return pdfuserMapper.insertpdf(pdfUser);
     }
+
+    @Override
+    public int selectCount() {
+        return pdfuserMapper.selectCount();
+    }
 }

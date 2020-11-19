@@ -113,6 +113,12 @@
                             <dd data-name="button">
                                 <a lay-href="${cp}/user/alluser">查看所有人员</a>
                             </dd>
+                            <dd data-name="button">
+                                <a lay-href="${cp}/user/userdaka">打卡</a>
+                            </dd>
+                            <dd data-name="button">
+                                <a lay-href="${cp}/user/lookuserdaka">查看打卡记录</a>
+                            </dd>
                             <%--<dd data-name="form">
                                 <a href="javascript:;">表单</a>
                                 <dl class="layui-nav-child">

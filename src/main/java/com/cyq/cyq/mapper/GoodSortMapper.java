@@ -2,7 +2,6 @@ package com.cyq.cyq.mapper;
 
 import com.cyq.cyq.model.Good;
 import com.cyq.cyq.model.GoodSort;
-import com.cyq.cyq.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
