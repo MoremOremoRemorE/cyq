@@ -23,8 +23,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private User user;
-    @Autowired
-    private SendEmailService sendEmailService;
+//    @Autowired
+//    private SendEmailService sendEmailService;
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
     public ModelAndView userinfo(HttpServletRequest request) {
@@ -109,7 +109,7 @@ public class UserController {
                 newuser.setUserid(userid);
                 newuser.setPassword(user.getNewpassword());
                 userService.editUser(newuser);
-                sendEmailService.sendEmaileditpassword(username,email,password);
+           //     sendEmailService.sendEmaileditpassword(username,email,password);
                 map.put("msg", "successs");
             }
         }catch(Exception e){

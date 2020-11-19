@@ -191,7 +191,7 @@
             <systemPath>${project.basedir}/src/main/resources/lib/aspose.pdf-11.0.0.jar</systemPath>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
              <groupId>activation</groupId>
              <artifactId>activation</artifactId>
              <version>0.0.1</version>
@@ -229,7 +229,7 @@
              <version>0.0.1</version>
              <scope>system</scope>
              <systemPath>${project.basedir}/src/main/resources/lib/mail.jar</systemPath>
-         </dependency>
+         </dependency>-->
 
 
     </dependencies>

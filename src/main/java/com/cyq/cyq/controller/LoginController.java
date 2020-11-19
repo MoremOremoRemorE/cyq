@@ -25,8 +25,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private User user;
-    @Autowired
-    private SendEmailService sendEmailService;
+//    @Autowired
+//    private SendEmailService sendEmailService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request) {
@@ -139,7 +139,7 @@ public class LoginController {
                 userrole.setUserid(userid);
 
                 userService.addUserRole(userrole);*/
-                sendEmailService.sendEmail(username,email,keywoed);
+           //     sendEmailService.sendEmail(username,email,keywoed);
                 map.put("msg","success");
             }
         } catch (Exception e) {
